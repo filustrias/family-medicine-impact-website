@@ -30,3 +30,9 @@ briefing-website-pessoal.md
 # local references (not for GitHub)
 dashboard9-reference.py
 briefing-website-pessoal.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
