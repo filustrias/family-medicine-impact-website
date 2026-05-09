@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "pt" } = Astro.props;
+
+const dict = {
+  pt: {
+    nav: {
+      home: { label: "Início", href: "/" },
+      impact: { label: "Impacto", href: "/impact" },
+      simulate: { label: "Simulador", href: "/simulate" },
+      projects: { label: "Projetos", href: "/projects" },
+      about: { label: "Sobre", href: "/about" },
+    },
+    other: { code: "EN", href: "/en/", aria: "Switch to English" },
+    themeAria: "Alternar tema claro/escuro",
+  },
+  en: {
+    nav: {
+      home: { label: "Home", href: "/en/" },
+      impact: { label: "Impact", href: "/en/impact" },
+      simulate: { label: "Simulate", href: "/en/simulate" },
+      projects: { label: "Projects", href: "/en/projects" },
+      about: { label: "About", href: "/en/about" },
+    },
+    other: { code: "PT", href: "/", aria: "Mudar para português" },
+    themeAria: "Toggle light/dark theme",
+  },
+};
+
+const t = dict[lang as "pt" | "en"] ?? dict.pt;
+const brandHref = lang === "en" ? "/en/" : "/";
+---
+
+<header class="border-b-[0.5px] border-slate-200 dark:border-slate-700">
+  <div
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-4 flex items-center justify-between gap-4"
+  >
+    <a href={brandHref} class="flex items-center gap-2 shrink-0">
+      <span class="w-2 h-2 rounded-full bg-accent inline-block" aria-hidden="true"></span>
+      <span class="text-sm font-medium text-slate-900 dark:text-slate-100"
+        >family-medicine-impact</span
+      >
+    </a>
+
+    <nav
+      class="hidden md:flex items-center gap-6 text-sm text-slate-600 dark:text-slate-400"
+      aria-label="Primary"
+    >
+      <a href={t.nav.home.href} class="hover:text-accent transition-colors">{t.nav.home.label}</a>
+      <a href={t.nav.impact.href} class="hover:text-accent transition-colors">{t.nav.impact.label}</a>
+      <a href={t.nav.simulate.href} class="hover:text-accent transition-colors">{t.nav.simulate.label}</a>
+      <a href={t.nav.projects.href} class="hover:text-accent transition-colors">{t.nav.projects.label}</a>
+      <a href={t.nav.about.href} class="hover:text-accent transition-colors">{t.nav.about.label}</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={t.other.href}
+        aria-label={t.other.aria}
+        class="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-accent border-l-[0.5px] border-slate-200 dark:border-slate-700 pl-3 transition-colors"
+      >
+        {t.other.code}
+      </a>
+      <button
+        id="atlas-theme-toggle"
+        type="button"
+        aria-label={t.themeAria}
+        class="text-slate-600 dark:text-slate-400 hover:text-accent transition-colors flex items-center"
+      >
+        <Icon name="lucide:sun" class="w-5 h-5 hidden dark:inline-block" aria-hidden="true" />
+        <Icon name="lucide:moon" class="w-5 h-5 inline-block dark:hidden" aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("atlas-theme-toggle");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      try {
+        localStorage.setItem("atlas-theme", isDark ? "dark" : "light");
+      } catch (_) {
+        /* localStorage unavailable */
+      }
+    });
+  }
+</script>

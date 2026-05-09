@@ -1,0 +1,40 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = "pt" } = Astro.props;
+
+const dict = {
+  pt: {
+    sister: "Mantenho também",
+    sisterTagline: "curso aberto de medicina baseada em evidências",
+  },
+  en: {
+    sister: "I also maintain",
+    sisterTagline: "an open course on evidence-based medicine",
+  },
+};
+
+const t = dict[lang as "pt" | "en"] ?? dict.pt;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t-[0.5px] border-slate-200 dark:border-slate-700 mt-16">
+  <div
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-slate-600 dark:text-slate-400"
+  >
+    <div>© {year} Adelson G. Jantsch</div>
+    <div class="flex items-center gap-4">
+      <a href="https://orcid.org/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">ORCID</a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">LinkedIn</a>
+      <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">GitHub</a>
+      <a href="mailto:" class="hover:text-accent transition-colors">Email</a>
+    </div>
+  </div>
+  <div
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-8 text-xs text-slate-500 dark:text-slate-500"
+  >
+    {t.sister} <em class="not-italic font-medium">evidências clínicas</em> — {t.sisterTagline} →
+  </div>
+</footer>
