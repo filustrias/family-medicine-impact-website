@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
 import EvidenceCarousel from "../components/EvidenceCarousel.astro";
+import NextStepCards from "../components/NextStepCards.astro";
 
 const evidenceSlides = [
   "Atenção Primária à Saúde deve ser a fundação de sistemas de saúde resilientes, de qualidade e eficientes.",
@@ -12,6 +13,30 @@ const evidenceSlides = [
   "Médicos de família encaminham muito menos seus pacientes para consultas com especialistas no nível secundário.",
   "Pacientes acompanhados por médicos de família têm risco muito menor de internação por diversas condições.",
   "Médicos de família acompanham seus pacientes de forma muito mais consistente do que médicos sem este treinamento.",
+];
+
+const nextStepCards = [
+  {
+    icon: "lucide:trending-up",
+    href: "/impacto",
+    title: "Impacto",
+    description:
+      "Duas coortes, 15 anos de evidência sobre a expansão da atenção primária no Rio de Janeiro.",
+  },
+  {
+    icon: "lucide:sliders-horizontal",
+    href: "/simulador",
+    title: "Simulador",
+    description:
+      "Coloque seu próprio município no modelo — veja custos e desfechos mudarem em tempo real.",
+  },
+  {
+    icon: "lucide:globe",
+    href: "/projetos",
+    title: "Projetos",
+    description:
+      "Pesquisa e consultoria ativas em quatro países: Brasil, Canadá, Angola e Moçambique.",
+  },
 ];
 ---
 
@@ -35,4 +60,5 @@ const evidenceSlides = [
     previousLabel="Anterior"
     nextLabel="Próximo"
   />
+  <NextStepCards sectionLabel="PRÓXIMOS PASSOS" cards={nextStepCards} />
 </Base>

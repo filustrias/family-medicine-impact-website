@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Hero from "../../components/Hero.astro";
 import EvidenceCarousel from "../../components/EvidenceCarousel.astro";
+import NextStepCards from "../../components/NextStepCards.astro";
 
 const evidenceSlides = [
   "Primary care must be the foundation of resilient, high-quality, and efficient health systems.",
@@ -12,6 +13,30 @@ const evidenceSlides = [
   "Family doctors refer far fewer patients to specialists at the secondary level.",
   "Patients followed by family doctors have substantially lower hospitalization risk across a range of conditions.",
   "Family doctors provide far more consistent follow-up than physicians without this training.",
+];
+
+const nextStepCards = [
+  {
+    icon: "lucide:trending-up",
+    href: "/impact",
+    title: "Impact",
+    description:
+      "Two cohorts, 15 years of evidence on the expansion of primary care in Rio de Janeiro.",
+  },
+  {
+    icon: "lucide:sliders-horizontal",
+    href: "/simulate",
+    title: "Simulator",
+    description:
+      "Run your own municipality through the model — see costs and outcomes shift in real time.",
+  },
+  {
+    icon: "lucide:globe",
+    href: "/projects",
+    title: "Projects",
+    description:
+      "Active research and consulting in four countries: Brazil, Canada, Angola, and Mozambique.",
+  },
 ];
 ---
 
@@ -35,4 +60,5 @@ const evidenceSlides = [
     previousLabel="Previous"
     nextLabel="Next"
   />
+  <NextStepCards sectionLabel="CONTINUE EXPLORING" cards={nextStepCards} />
 </Base>
