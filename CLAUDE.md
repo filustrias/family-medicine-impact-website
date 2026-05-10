@@ -138,3 +138,22 @@ Briefing completo está em `briefing-website-pessoal.md` — anexar quando preci
 - Theme toggle persistido em `localStorage` com chave `"atlas-theme"`
 - Nav do Header tem links para rotas futuras que ainda dão 404 (alinhado com critério da Fase 2)
 - `--color-accent` autoswap entre temas via redefinição em `.dark`, então `text-accent` e `bg-accent` funcionam direto em ambos
+## Progresso
+
+- [x] Fase 1 (Tailwind v4, paleta Atlas via @theme, Inter Variable, Base.astro, Header, Footer, theme toggle sem FOUC, i18n PT/EN — deploy em https://family-medicine-impact-website.pages.dev)
+- [ ] Fase 2A: Hero refinado (eyebrow + headline definitiva + subline + 2 CTAs)
+- [ ] Fase 2B: Carrossel de evidências (5 slides, auto-advance, pause on hover)
+- [ ] Fase 2C: Mapa-múndi com pulsos animados em SVG
+- [ ] Fase 2D: Cards de próximos passos (Impact, Simulator, Projects)
+- [ ] Fase 3: Páginas restantes
+- [ ] Fase 4: Simulador
+- [ ] Fase 5: Polish e deploy
+
+## Notas técnicas relevantes
+
+- Tailwind v4 instalado — configuração via `@theme` em `src/styles/global.css`, NÃO em `tailwind.config.mjs`
+- Theme toggle persistido em `localStorage` com chave `"atlas-theme"`
+- `--color-accent` autoswap entre temas via redefinição em `.dark`, então `text-accent` e `bg-accent` funcionam direto em ambos
+- Locale default = PT. EN é variante traduzida.
+- Container central da home: `max-w-4xl mx-auto px-4 md:px-8 lg:px-12`
+- Site público: https://family-medicine-impact-website.pages.dev (deploy automático em cada push)

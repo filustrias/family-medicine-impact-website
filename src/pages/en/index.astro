@@ -1,21 +1,19 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Hero from "../../components/Hero.astro";
 ---
 
-<Base lang="en" title="Atlas — Phase 1 complete">
-  <section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-16 md:py-20">
-    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-5">
-      Atlas · Phase 1
-    </p>
-    <h1
-      class="text-4xl md:text-5xl font-semibold tracking-display text-slate-900 dark:text-slate-100"
-    >
-      Foundation in place,<br />
-      <span class="text-accent">next layers under construction.</span>
-    </h1>
-    <p class="mt-6 text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-[530px]">
-      Tailwind, Inter Variable, persisted light/dark theme, and bilingual PT/EN routing are ready.
-      The full home starts in Phase 2.
-    </p>
-  </section>
+<Base
+  lang="en"
+  title="Adelson G. Jantsch — Family physician and researcher"
+  description="Working at the intersection of medical education, implementation research, health-system strengthening, and the smart use of data."
+>
+  <Hero
+    eyebrow="Adelson G. Jantsch · Family Physician & Researcher"
+    headlineLine1="Strengthening primary care,"
+    headlineLine2="where people live."
+    subline="Working at the intersection of medical education, implementation research, health-system strengthening, and the smart use of data."
+    ctaPrimary={{ label: "Explore the impact", href: "/impact" }}
+    ctaSecondary={{ label: "About me", href: "/about" }}
+  />
 </Base>

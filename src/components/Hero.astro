@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface CTA {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  eyebrow: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  subline: string;
+  ctaPrimary: CTA;
+  ctaSecondary: CTA;
+}
+
+const { eyebrow, headlineLine1, headlineLine2, subline, ctaPrimary, ctaSecondary } = Astro.props;
+---
+
+<section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pt-12 pb-16 md:pt-16 md:pb-20">
+  <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-3">
+    {eyebrow}
+  </p>
+  <h1
+    class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-display text-slate-900 dark:text-slate-100 mb-6"
+  >
+    {headlineLine1}<br />
+    <span class="text-accent">{headlineLine2}</span>
+  </h1>
+  <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-[600px] mb-2">
+    {subline}
+  </p>
+  <div class="mt-8 flex flex-col sm:flex-row gap-3">
+    <a
+      href={ctaPrimary.href}
+      class="inline-flex items-center justify-center gap-2 bg-accent text-white dark:text-slate-900 text-sm font-medium py-2.5 px-5 rounded-md hover:opacity-90 transition-opacity w-fit"
+    >
+      {ctaPrimary.label}
+      <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
+    </a>
+    <a
+      href={ctaSecondary.href}
+      class="inline-flex items-center justify-center border-[0.5px] border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-100 text-sm font-medium py-2.5 px-5 rounded-md hover:border-accent hover:text-accent transition-colors w-fit"
+    >
+      {ctaSecondary.label}
+    </a>
+  </div>
+</section>
