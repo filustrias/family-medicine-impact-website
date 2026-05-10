@@ -1,0 +1,129 @@
+---
+import Base from "../../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Base
+  lang="en"
+  title="About — Adelson G. Jantsch"
+  description="Family physician, researcher, and consultant focused on developing primary health care."
+>
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pt-12 pb-8 md:pt-16 md:pb-10"
+  >
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-3">
+      ABOUT
+    </p>
+    <h1
+      class="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.035em] text-slate-900 dark:text-slate-100 mb-3"
+    >
+      Adelson G. Jantsch
+    </h1>
+    <p class="text-base md:text-lg font-medium text-accent">
+      Family physician, researcher, consultant for strengthening health
+      systems.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-4 md:mt-8">
+    <div
+      class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 md:gap-12 items-start"
+    >
+      <img
+        src="/adelson-jantsch.jpg"
+        alt="Adelson Guaraci Jantsch"
+        class="w-full h-auto rounded-[10px] max-w-[280px]"
+        loading="eager"
+      />
+      <div
+        class="space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+      >
+        <p>
+          I am a family physician, researcher, and consultant focused on
+          developing Primary Health Care (PHC). I work at the intersection of
+          medical education, health-system strengthening, and the smart use of
+          data to turn evidence into practice and improve outcomes.
+        </p>
+        <p>
+          I design and implement solutions for complex problems by combining
+          participatory research and bringing people and teams together to
+          co-create responses tailored to each context. I hold a Master's and a
+          PhD in Public Health & Epidemiology, and I work in Brazil and
+          internationally (Canada, Angola, Mozambique) on health-system
+          strengthening projects.
+        </p>
+        <p>
+          Beyond family medicine and PHC, my current interests include Global
+          Health, mixed-methods research, implementation science, and
+          leadership engagement to develop and implement health innovations.
+          Through these approaches, I aim for PHC to serve as the coordinating
+          backbone of health systems, delivering comprehensive, continuous,
+          person-centered care aligned with people's needs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-12 md:mt-16 pb-12 md:pb-16"
+  >
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-4">
+      WHERE TO FIND ME
+    </p>
+    <div class="flex flex-wrap gap-x-6 gap-y-3">
+      <a
+        href="https://orcid.org/0000-0002-3012-5619"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:badge-check"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        ORCID
+      </a>
+      <a
+        href="https://www.linkedin.com/in/adelson-guaraci-jantsch-263639266/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:linkedin"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        LinkedIn
+      </a>
+      <a
+        href="mailto:adelson.guaracii@gmail.com"
+        data-copy-email
+        data-email="adelson.guaracii@gmail.com"
+        data-copied-text="Email copied!"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:mail"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        <span data-copy-label>Email</span>
+      </a>
+      <a
+        href="https://findtheevidence.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:book-open"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        Find the evidence
+      </a>
+    </div>
+  </section>
+</Base>

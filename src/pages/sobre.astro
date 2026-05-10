@@ -1,0 +1,130 @@
+---
+import Base from "../layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Base
+  lang="pt"
+  title="Sobre — Adelson G. Jantsch"
+  description="Médico de família, pesquisador e consultor para o desenvolvimento da Atenção Primária à Saúde."
+>
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pt-12 pb-8 md:pt-16 md:pb-10"
+  >
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-3">
+      SOBRE
+    </p>
+    <h1
+      class="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.035em] text-slate-900 dark:text-slate-100 mb-3"
+    >
+      Adelson G. Jantsch
+    </h1>
+    <p class="text-base md:text-lg font-medium text-accent">
+      Médico de família, pesquisador, consultor para fortalecimento de sistemas
+      de saúde.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-4 md:mt-8">
+    <div
+      class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 md:gap-12 items-start"
+    >
+      <img
+        src="/adelson-jantsch.jpg"
+        alt="Adelson Guaraci Jantsch"
+        class="w-full h-auto rounded-[10px] max-w-[280px]"
+        loading="eager"
+      />
+      <div
+        class="space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+      >
+        <p>
+          Sou médico de família, pesquisador e consultor para o desenvolvimento
+          da Atenção Primária à Saúde. Trabalho na interseção entre educação
+          médica, fortalecimento de sistemas de saúde e uso inteligente de
+          dados para transformar evidências em prática e melhorar desfechos.
+        </p>
+        <p>
+          Atuo no desenho e na implementação de soluções para problemas
+          complexos, combinando pesquisa participativa e aproximando pessoas e
+          equipes para cocriar respostas adequadas a cada contexto. Sou mestre
+          e doutor em Saúde Pública e Epidemiologia e atuo no Brasil e em
+          projetos de colaboração internacional (Canadá, Angola, Moçambique) em
+          projetos de fortalecimento de sistemas de saúde.
+        </p>
+        <p>
+          Além da medicina de família e da atenção primária à saúde, meus
+          maiores interesses atuais são a saúde global, pesquisa com métodos
+          mistos, pesquisa de implementação e o engajamento de lideranças para
+          desenvolver e implementar inovações em saúde. Através destas
+          ferramentas, busco fazer com que a APS seja de fato a ordenadora dos
+          sistemas de saúde, capaz de entregar um cuidado abrangente, contínuo
+          e centrado nas necessidades das pessoas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-12 md:mt-16 pb-12 md:pb-16"
+  >
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-4">
+      ONDE ENCONTRAR
+    </p>
+    <div class="flex flex-wrap gap-x-6 gap-y-3">
+      <a
+        href="https://orcid.org/0000-0002-3012-5619"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:badge-check"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        ORCID
+      </a>
+      <a
+        href="https://www.linkedin.com/in/adelson-guaraci-jantsch-263639266/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:linkedin"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        LinkedIn
+      </a>
+      <a
+        href="mailto:adelson.guaracii@gmail.com"
+        data-copy-email
+        data-email="adelson.guaracii@gmail.com"
+        data-copied-text="Email copiado!"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:mail"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        <span data-copy-label>Email</span>
+      </a>
+      <a
+        href="https://findtheevidence.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-accent transition-colors"
+      >
+        <Icon
+          name="lucide:book-open"
+          class="w-4 h-4 text-accent"
+          aria-hidden="true"
+        />
+        Find the evidence
+      </a>
+    </div>
+  </section>
+</Base>

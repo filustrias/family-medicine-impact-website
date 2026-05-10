@@ -9,10 +9,12 @@ const dict = {
   pt: {
     sister: "Mantenho também",
     sisterTagline: "curso aberto de medicina baseada em evidências",
+    emailCopied: "Email copiado!",
   },
   en: {
     sister: "I also maintain",
     sisterTagline: "an open course on evidence-based medicine",
+    emailCopied: "Email copied!",
   },
 };
 
@@ -26,15 +28,74 @@ const year = new Date().getFullYear();
   >
     <div>© {year} Adelson G. Jantsch</div>
     <div class="flex items-center gap-4">
-      <a href="https://orcid.org/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">ORCID</a>
-      <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">LinkedIn</a>
-      <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">GitHub</a>
-      <a href="mailto:" class="hover:text-accent transition-colors">Email</a>
+      <a
+        href="https://orcid.org/0000-0002-3012-5619"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-accent transition-colors">ORCID</a
+      >
+      <a
+        href="https://www.linkedin.com/in/adelson-guaraci-jantsch-263639266/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-accent transition-colors">LinkedIn</a
+      >
+      <a
+        href="mailto:adelson.guaracii@gmail.com"
+        data-copy-email
+        data-email="adelson.guaracii@gmail.com"
+        data-copied-text={t.emailCopied}
+        class="hover:text-accent transition-colors"
+      >
+        <span data-copy-label>Email</span>
+      </a>
     </div>
   </div>
   <div
     class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-8 text-xs text-slate-500 dark:text-slate-500"
   >
-    {t.sister} <em class="not-italic font-medium">evidências clínicas</em> — {t.sisterTagline} →
+    {t.sister}
+    <a
+      href="https://findtheevidence.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-medium hover:text-accent transition-colors"
+      >Find the evidence</a
+    >
+    — {t.sisterTagline} →
   </div>
 </footer>
+
+<script>
+  (function () {
+    const buttons = document.querySelectorAll<HTMLAnchorElement>(
+      "[data-copy-email]"
+    );
+    buttons.forEach((btn) => {
+      const labelEl = btn.querySelector<HTMLElement>("[data-copy-label]");
+      if (!labelEl) return;
+      const email = btn.dataset.email;
+      if (!email) return;
+      const copiedText = btn.dataset.copiedText ?? "Email copied!";
+      const originalText = labelEl.textContent ?? "Email";
+      let timeoutId: number | null = null;
+
+      btn.addEventListener("click", (e) => {
+        if (!navigator.clipboard?.writeText) return;
+        e.preventDefault();
+        navigator.clipboard
+          .writeText(email)
+          .then(() => {
+            labelEl.textContent = copiedText;
+            if (timeoutId !== null) window.clearTimeout(timeoutId);
+            timeoutId = window.setTimeout(() => {
+              labelEl.textContent = originalText;
+            }, 2000);
+          })
+          .catch(() => {
+            /* silent — clipboard write rejected */
+          });
+      });
+    });
+  })();
+</script>
