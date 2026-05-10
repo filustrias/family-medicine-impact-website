@@ -1,6 +1,18 @@
 ---
 import Base from "../../layouts/Base.astro";
 import Hero from "../../components/Hero.astro";
+import EvidenceCarousel from "../../components/EvidenceCarousel.astro";
+
+const evidenceSlides = [
+  "Primary care must be the foundation of resilient, high-quality, and efficient health systems.",
+  "Health workers need qualified training to practice at the first level of care — community-based health centres and posts.",
+  "Family doctors are the medical specialty of primary care.",
+  "Trained family doctors identify more conditions, and identify them better, across the full spectrum of health problems.",
+  "Family doctors order fewer laboratory and imaging tests — making more rational use of these resources.",
+  "Family doctors refer far fewer patients to specialists at the secondary level.",
+  "Patients followed by family doctors have substantially lower hospitalization risk across a range of conditions.",
+  "Family doctors provide far more consistent follow-up than physicians without this training.",
+];
 ---
 
 <Base
@@ -15,5 +27,12 @@ import Hero from "../../components/Hero.astro";
     subline="Working at the intersection of medical education, implementation research, health-system strengthening, and the smart use of data."
     ctaPrimary={{ label: "Explore the impact", href: "/impact" }}
     ctaSecondary={{ label: "About me", href: "/about" }}
+  />
+  <EvidenceCarousel
+    sectionLabel="EVIDENCE · PRIMARY CARE AND FAMILY MEDICINE"
+    slides={evidenceSlides}
+    sourceText="Rio de Janeiro cohort · 2010–2018"
+    previousLabel="Previous"
+    nextLabel="Next"
   />
 </Base>

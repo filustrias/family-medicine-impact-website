@@ -1,6 +1,18 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
+import EvidenceCarousel from "../components/EvidenceCarousel.astro";
+
+const evidenceSlides = [
+  "Atenção Primária à Saúde deve ser a fundação de sistemas de saúde resilientes, de qualidade e eficientes.",
+  "Profissionais de saúde precisam de treinamento qualificado para trabalhar no primeiro nível de atenção — postos e centros de saúde baseados na comunidade.",
+  "Médicos de família são a especialidade médica da Atenção Primária à Saúde.",
+  "Médicos de família treinados identificam mais e melhor todos os tipos de condições de saúde.",
+  "Médicos de família solicitam menos exames laboratoriais e de imagem — fazem uso mais racional destes recursos.",
+  "Médicos de família encaminham muito menos seus pacientes para consultas com especialistas no nível secundário.",
+  "Pacientes acompanhados por médicos de família têm risco muito menor de internação por diversas condições.",
+  "Médicos de família acompanham seus pacientes de forma muito mais consistente do que médicos sem este treinamento.",
+];
 ---
 
 <Base
@@ -15,5 +27,12 @@ import Hero from "../components/Hero.astro";
     subline="Atuando na intersecção entre educação médica, pesquisa de implementação, fortalecimento de sistemas de saúde e uso inteligente de dados."
     ctaPrimary={{ label: "Explore o impacto", href: "/impact" }}
     ctaSecondary={{ label: "Sobre mim", href: "/about" }}
+  />
+  <EvidenceCarousel
+    sectionLabel="EVIDÊNCIAS · ATENÇÃO PRIMÁRIA E MEDICINA DE FAMÍLIA"
+    slides={evidenceSlides}
+    sourceText="Coorte Rio de Janeiro · 2010–2018"
+    previousLabel="Anterior"
+    nextLabel="Próximo"
   />
 </Base>
