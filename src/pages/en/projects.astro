@@ -1,0 +1,419 @@
+---
+import Base from "../../layouts/Base.astro";
+import ProjectSection from "../../components/ProjectSection.astro";
+---
+
+<Base
+  lang="en"
+  title="Current work · family-medicine-impact"
+  description="Research, consulting, and cooperation across four countries: Brazil, Canada, Angola, and Mozambique."
+>
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pt-12 pb-8 md:pt-16 md:pb-10"
+  >
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-3">
+      PROJECTS
+    </p>
+    <h1
+      class="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.035em] text-slate-900 dark:text-slate-100 mb-3"
+    >
+      Current work
+    </h1>
+    <p class="text-base md:text-lg font-medium text-accent">
+      Where I'm working, with whom, and toward what.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mb-12 md:mb-16">
+    <p
+      class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+    >
+      My current projects combine experiences I have developed in the past —
+      in Family Medicine, medical education, and faculty development — with
+      areas I have been studying and seeking to consolidate more recently,
+      such as global health, stakeholder engagement, health system
+      strengthening, implementation research, and digital health innovations.
+      In Brazil, I work as an advisor at the Open University of SUS (UNA-SUS)
+      and at the Municipal Health Department of Rio de Janeiro, and as a
+      consultant in projects with Hospital Alemão Oswaldo Cruz and Fundação
+      Getúlio Vargas; in Angola, with the College of General and Family
+      Medicine of the Order of Physicians of Angola; and in Mozambique, with
+      the Department of General and Family Medicine of Eduardo Mondlane
+      University. In addition, since 2015 I have been an active member of the
+      Besrour Centre — initially based at the College of Family Physicians of
+      Canada and currently at the University of Oxford — which promotes the
+      development of Family Medicine and Primary Health Care in the
+      international context.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mb-8 md:mb-12">
+    <div
+      class="border-t-[0.5px] border-b-[0.5px] border-slate-200 dark:border-slate-700 py-4"
+    >
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span
+          class="text-[11px] uppercase tracking-[0.14em] font-medium text-accent mr-2"
+        >
+          ON THIS PAGE
+        </span>
+        <button
+          id="tab-rio-de-janeiro"
+          type="button"
+          role="tab"
+          aria-controls="rio-de-janeiro"
+          aria-selected="true"
+          data-tab="rio-de-janeiro"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-accent border-accent"
+          >Rio de Janeiro</button
+        >
+        <button
+          id="tab-una-sus"
+          type="button"
+          role="tab"
+          aria-controls="una-sus"
+          aria-selected="false"
+          data-tab="una-sus"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >UNA-SUS</button
+        >
+        <button
+          id="tab-angola"
+          type="button"
+          role="tab"
+          aria-controls="angola"
+          aria-selected="false"
+          data-tab="angola"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >Angola</button
+        >
+        <button
+          id="tab-mocambique"
+          type="button"
+          role="tab"
+          aria-controls="mocambique"
+          aria-selected="false"
+          data-tab="mocambique"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >Mozambique</button
+        >
+        <button
+          id="tab-besrour"
+          type="button"
+          role="tab"
+          aria-controls="besrour"
+          aria-selected="false"
+          data-tab="besrour"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >Besrour</button
+        >
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-12 md:pb-16">
+    <ProjectSection
+      id="rio-de-janeiro"
+      labelledBy="tab-rio-de-janeiro"
+      eyebrow="RIO DE JANEIRO · BRAZIL"
+      meta="Municipal Health Department · Healthcare Intelligence Unit"
+    >
+      <p>
+        In the city of Rio de Janeiro, I work as advisor to the Superintendency
+        of Primary Care at the Municipal Health Department, as part of the
+        Núcleo de Inteligência Assistencial (Healthcare Intelligence Unit).
+        This group uses electronic health records and vital statistics to
+        create digital innovations that support healthcare professionals in
+        patient care and help local managers monitor team performance.
+        Through my work, I seek to ensure that these innovations not only
+        provide information on professional performance and indicators but
+        also have the potential to transform daily practice through an
+        educational and formative approach. In this way, I aim for these
+        technologies to promote the development of clinical, professional,
+        and teamwork competencies.
+      </p>
+      <p>
+        To make this shift possible — moving from a traditional logic
+        centered on indicators and targets to a formative perspective that
+        values the potential of each professional to improve their practice —
+        knowledge in epidemiology, public health, and family medicine is
+        essential, but not sufficient. That is why I incorporate
+        mixed-methods research and implementation research into my work, as
+        they are powerful tools to address the most fundamental challenges
+        faced by healthcare professionals and to adapt the design of
+        technological innovations to their real needs.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="una-sus"
+      labelledBy="tab-una-sus"
+      hidden
+      eyebrow="UNA-SUS · BRAZIL"
+      meta="Open University of SUS — Fiocruz / Ministry of Health"
+    >
+      <p>
+        At UNA-SUS — the Open University of the Brazilian National Health
+        System, an initiative of the Ministry of Health based at Fiocruz in
+        Brasília — I serve as advisor to the Executive Secretariat. UNA-SUS is
+        a collaborative network of public universities that provides
+        distance-learning courses for health professionals across the country.
+        Its mission is to support training and continuing education,
+        contributing to the improvement of services within Brazil's Unified
+        Health System (SUS).
+      </p>
+      <p>
+        In recent years, I have focused my work on two main fronts: (1) the
+        development of innovative educational activities for national programs
+        aimed at the provision and retention of physicians in Primary Health
+        Care in Brazil — the Mais Médicos Program and the Médicos pelo Brasil
+        Program; and (2) international cooperation to strengthen health
+        training in Portuguese-speaking countries.
+      </p>
+      <p>
+        Within the national programs for physician provision and retention
+        (front 1), the educational innovations I have developed include the
+        design of distance preceptorship activities and synchronous small-group
+        sessions for training in clinical communication, clinical reasoning,
+        evidence-based medicine, and the care of patients with multimorbidity,
+        polypharmacy, and complex health needs. These activities are part of
+        the Specialization in Family and Community Medicine, a two-year
+        program.
+      </p>
+      <p>
+        In addition to asynchronous tutored activities, students participate
+        in weekly synchronous sessions in groups of 12 physicians in training,
+        each accompanied by a facilitator. These sessions are supported by
+        video lectures, practical exercises, instructional videos, and manuals
+        guiding the 1,500 facilitators in conducting each activity. Throughout
+        the two years of specialization, students share real video-recorded
+        consultations for group discussion using the ALOBA methodology, and
+        present real clinical cases that serve as the basis for collective
+        learning.
+      </p>
+      <p>
+        The first edition of this Specialization was delivered by eight
+        Brazilian universities and involved 40 coordinators, 1,500
+        facilitators, and 16,000 physicians in training across the country,
+        including rural areas, remote regions, quilombola communities,
+        indigenous communities, riverside populations, and persons deprived of
+        liberty. Building this broad governance structure has ensured that
+        information, guidance, and feedback circulate in a timely manner in
+        both directions — from the national coordination at UNA-SUS to the
+        students and, in turn, from students' experiences and demands back to
+        us. This dynamic strengthens pedagogical quality, ensures alignment
+        with national training standards, and allows for the constant
+        improvement of the teaching and learning experience offered by
+        UNA-SUS.
+      </p>
+      <p>
+        At present, the materials produced for these activities are being
+        converted into three books so that physicians working in Primary Care,
+        university faculty, and preceptors in residency programs can use them
+        as teaching references in training sessions, thereby expanding the
+        reach and practical usefulness of the developed content.
+      </p>
+      <p>
+        Regarding international cooperation initiatives to strengthen health
+        training in Portuguese-speaking countries (2), I worked to establish
+        collaboration between Brazil and Angola for the creation of a hub for
+        the production and delivery of distance-learning courses for health
+        professionals in Luanda — see details in the Angola section. We are
+        currently developing a training program to strengthen Primary Health
+        Care in Portuguese-speaking countries. As a first step, we have begun
+        producing a pilot module focused on the concept of Models of Care,
+        presenting its key principles and demonstrating how models of care are
+        currently structured in Lusophone countries.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="angola"
+      labelledBy="tab-angola"
+      hidden
+      eyebrow="ANGOLA · SINCE 2022"
+      meta="College of General and Family Medicine — Order of Physicians of Angola"
+    >
+      <p>
+        Since October 2022, I have been collaborating with the College of
+        General and Family Medicine of the Order of Physicians of Angola. My
+        work in the country involves stakeholder engagement and leadership
+        mobilization, focusing on strategies to strengthen Primary Health Care
+        and Family Medicine training.
+      </p>
+      <p>
+        At present, we are preparing a policy briefing that outlines priority
+        actions to improve the training of family physicians and reinforce
+        Primary Health Care in Angola. In parallel, I am promoting
+        collaboration between Brazil and Angola to establish a hub for the
+        production and delivery of distance-learning courses for health
+        professionals, in partnership with UNA-SUS. This initiative led to the
+        signing, in March 2024, of a <a
+          href="https://www.unasus.gov.br/noticia/fiocruz-e-universidade-agostinho-neto-assinam-memorando-de-entendimento-para-cooperacao-internacional"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline"
+          >Memorandum of Understanding between Fiocruz and Agostinho Neto
+          University</a
+        >, laying the groundwork for the new digital health training hub in
+        the country.
+      </p>
+      <p>
+        During this period, I have also taken part in academic and training
+        activities in Luanda and Lubango, focusing on clinical reasoning,
+        evidence-based medicine, and research capacity-building, working with
+        Family Medicine residents and faculty. Among the outcomes of this
+        partnership, we published the <a
+          href="https://phcfm.org/index.php/PHCFM/article/view/4458"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline"
+          >first scientific article on Family Medicine training in Angola</a
+        >, which has strengthened the visibility of the specialty and paved
+        the way for new initiatives.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="mocambique"
+      labelledBy="tab-mocambique"
+      hidden
+      eyebrow="MOZAMBIQUE · SINCE 2019"
+      meta="Department of General and Family Medicine — Eduardo Mondlane University"
+    >
+      <p>
+        My work in Mozambique also involves stakeholder engagement and
+        leadership mobilization, with the goal of developing strategies to
+        strengthen Primary Health Care and Family Medicine training, helping
+        the country move toward a more integrated, comprehensive, and
+        sustainable system of care.
+      </p>
+      <p>
+        Since 2019, when I first connected with Dr. Yolanda Marcelino during
+        the WONCA Africa Conference in Kampala, Uganda, I have been
+        collaborating with the Department of General and Family Medicine at
+        Eduardo Mondlane University in Maputo. This partnership resulted in
+        the publication of a scientific article on Family Medicine in
+        Mozambique, marking the beginning of an academic collaboration that
+        has grown stronger over the years. Since March 2025, I have been
+        working with a group of young Family Medicine leaders in Mozambique,
+        graduates of Eduardo Mondlane University, on an innovative project for
+        the country's primary health care system. Through a participatory
+        research approach, we are jointly analyzing the weaknesses of the
+        current model and designing a new model of care capable of
+        transitioning from a vertical, selective format to a comprehensive,
+        person-centered, and continuous model. Over the past six months, we
+        have held biweekly online meetings dedicated to analyzing Mozambique's
+        current primary care model using the 5S-5M-5C framework.
+      </p>
+      <p>
+        We are now designing a pilot intervention, which includes both the
+        implementation of the new model of care and the introduction of
+        electronic patient records in primary care — still incipient in
+        Mozambique. In this project, implementation research tools have also
+        been essential to generate evidence that supports structured dialogue
+        with decision-makers and stakeholders.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="besrour"
+      labelledBy="tab-besrour"
+      hidden
+      eyebrow="BESROUR CENTRE · SINCE 2015"
+      meta="University of Oxford (previously CFPC, Canada)"
+    >
+      <p>
+        Since 2015, I have been an active member of the Besrour Centre,
+        regularly participating in the meetings it promotes. I collaborate on
+        initiatives focused on capacity-building in scientific research and on
+        connecting colleagues from Portuguese-speaking countries with the
+        global collaboration network fostered by the Centre.
+      </p>
+      <p>
+        The <a
+          href="https://www.cfpc.ca/en/about-us/the-besrour-centre/about"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline"
+          >Besrour Centre was initially based at the College of Family
+          Physicians of Canada</a
+        >. Despite its recent relocation to the <a
+          href="https://www.phc.ox.ac.uk/news/university-of-oxford-announces-new-professorship-and-centre-for-global-primary-care-with-support-from-dr-sadok-besrour"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline">University of Oxford</a
+        >, its vision remains that of a world where no one is left behind in
+        access to quality primary care, and its mission is to foster
+        collaboration to advance Family Medicine internationally. Its values
+        include equity (recognizing the dignity of every human being and
+        supporting the fair distribution of resources and access for
+        marginalized and vulnerable groups), justice (advocating for the right
+        of all individuals to fair and impartial access to the benefits of
+        society, including the right to health), excellence (upholding the
+        highest standards of quality, patient-centered care, integrity,
+        professionalism, and leadership), reciprocity (promoting collaborative
+        and multidirectional exchange of experiences, knowledge, and
+        capacity-building among partners and communities), and respect
+        (valuing the cultures, norms, and perspectives of each individual).
+      </p>
+    </ProjectSection>
+  </div>
+</Base>
+
+<script>
+  (function () {
+    const tabs = Array.from(
+      document.querySelectorAll<HTMLButtonElement>("[data-tab]")
+    );
+    if (tabs.length === 0) return;
+
+    const ACTIVE = ["text-accent", "border-accent"];
+    const INACTIVE = [
+      "text-slate-600",
+      "dark:text-slate-400",
+      "border-transparent",
+      "hover:text-accent",
+    ];
+
+    function showTab(id: string) {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.tab === id;
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        if (isActive) {
+          tab.classList.remove(...INACTIVE);
+          tab.classList.add(...ACTIVE);
+        } else {
+          tab.classList.remove(...ACTIVE);
+          tab.classList.add(...INACTIVE);
+        }
+      });
+      document
+        .querySelectorAll<HTMLElement>("[role='tabpanel']")
+        .forEach((panel) => {
+          panel.hidden = panel.id !== id;
+        });
+    }
+
+    const validIds = new Set(tabs.map((t) => t.dataset.tab));
+    const defaultId = tabs[0].dataset.tab!;
+    const hashId = window.location.hash.slice(1);
+    if (validIds.has(hashId) && hashId !== defaultId) {
+      showTab(hashId);
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const id = tab.dataset.tab;
+        if (!id) return;
+        showTab(id);
+        history.replaceState(null, "", "#" + id);
+      });
+    });
+
+    window.addEventListener("hashchange", () => {
+      const id = window.location.hash.slice(1);
+      if (validIds.has(id)) showTab(id);
+    });
+  })();
+</script>

@@ -1,0 +1,432 @@
+---
+import Base from "../layouts/Base.astro";
+import ProjectSection from "../components/ProjectSection.astro";
+---
+
+<Base
+  lang="pt"
+  title="Trabalhos atuais · family-medicine-impact"
+  description="Pesquisa, consultoria e cooperação em quatro países: Brasil, Canadá, Angola e Moçambique."
+>
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pt-12 pb-8 md:pt-16 md:pb-10"
+  >
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-3">
+      PROJETOS
+    </p>
+    <h1
+      class="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.035em] text-slate-900 dark:text-slate-100 mb-3"
+    >
+      Trabalhos atuais
+    </h1>
+    <p class="text-base md:text-lg font-medium text-accent">
+      Onde estou trabalhando, com quem, e em direção a quê.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mb-12 md:mb-16">
+    <p
+      class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+    >
+      Meus projetos atuais combinam um pouco do que já fiz anteriormente
+      (medicina de família, educação médica, capacitação para a docência) com o
+      que venho estudando e buscando alcançar atualmente (saúde global,
+      engajamento de stakeholders, fortalecimento de sistemas de saúde,
+      pesquisa de implementação e inovações em saúde digital). No Brasil, atuo
+      como assessor na Universidade Aberta do SUS (UNA-SUS) e na Secretaria
+      Municipal de Saúde do Rio de Janeiro, e como consultor em projetos do
+      Hospital Alemão Oswaldo Cruz e da Fundação Getúlio Vargas; em Angola,
+      com o Colégio de Medicina Geral e Familiar da Ordem dos Médicos de
+      Angola; e em Moçambique, com o Departamento de Medicina Geral e Familiar
+      da Universidade Eduardo Mondlane. Além disso, desde 2015 sou membro ativo
+      do Centro Besrour — inicialmente sediado no Colégio de Médicos de Família
+      do Canadá e atualmente baseado na Universidade de Oxford — que promove o
+      desenvolvimento da Medicina de Família e da Atenção Primária no cenário
+      internacional.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mb-8 md:mb-12">
+    <div
+      class="border-t-[0.5px] border-b-[0.5px] border-slate-200 dark:border-slate-700 py-4"
+    >
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span
+          class="text-[11px] uppercase tracking-[0.14em] font-medium text-accent mr-2"
+        >
+          NESTA PÁGINA
+        </span>
+        <button
+          id="tab-rio-de-janeiro"
+          type="button"
+          role="tab"
+          aria-controls="rio-de-janeiro"
+          aria-selected="true"
+          data-tab="rio-de-janeiro"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-accent border-accent"
+          >Rio de Janeiro</button
+        >
+        <button
+          id="tab-una-sus"
+          type="button"
+          role="tab"
+          aria-controls="una-sus"
+          aria-selected="false"
+          data-tab="una-sus"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >UNA-SUS</button
+        >
+        <button
+          id="tab-angola"
+          type="button"
+          role="tab"
+          aria-controls="angola"
+          aria-selected="false"
+          data-tab="angola"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >Angola</button
+        >
+        <button
+          id="tab-mocambique"
+          type="button"
+          role="tab"
+          aria-controls="mocambique"
+          aria-selected="false"
+          data-tab="mocambique"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >Moçambique</button
+        >
+        <button
+          id="tab-besrour"
+          type="button"
+          role="tab"
+          aria-controls="besrour"
+          aria-selected="false"
+          data-tab="besrour"
+          class="text-sm font-medium pb-1 border-b-[1.5px] transition-colors text-slate-600 dark:text-slate-400 border-transparent hover:text-accent"
+          >Besrour</button
+        >
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-12 md:pb-16">
+    <ProjectSection
+      id="rio-de-janeiro"
+      labelledBy="tab-rio-de-janeiro"
+      eyebrow="RIO DE JANEIRO · BRASIL"
+      meta="Secretaria Municipal de Saúde · Núcleo de Inteligência Assistencial"
+    >
+      <p>
+        No município do Rio de Janeiro, atuo como assessor da Superintendência
+        de Atenção Primária à Saúde da Secretaria Municipal de Saúde,
+        integrando o Núcleo de Inteligência Assistencial. Esse grupo utiliza
+        dados de prontuário eletrônico de pacientes e estatísticas vitais para
+        criar inovações digitais que apoiem profissionais de saúde no cuidado
+        aos pacientes e gestores locais no monitoramento do desempenho das
+        equipes. Com o meu trabalho, busco fazer com que essas inovações
+        ofereçam não apenas informações sobre o desempenho profissional e o
+        acompanhamento de indicadores, mas que também sejam capazes de
+        transformar a prática cotidiana por meio de uma abordagem educacional
+        e formativa. Assim, procuro fazer com que essas tecnologias promovam
+        o desenvolvimento de competências clínicas, profissionais e de
+        trabalho em equipe.
+      </p>
+      <p>
+        Para viabilizar essa mudança — migrar de uma lógica tradicional
+        centrada em indicadores e metas para uma perspectiva formativa que
+        valoriza o potencial de cada profissional em aprimorar sua prática —
+        conhecimentos em epidemiologia, saúde pública, clínica médica e
+        medicina de família são fundamentais, mas não suficientes. Por isso,
+        incorporo à minha atuação a pesquisa de métodos mistos e a pesquisa de
+        implementação, ferramentas potentes para enfrentar as dificuldades
+        mais estruturais da prática profissional e adaptar o desenho das
+        inovações tecnológicas às necessidades reais dos profissionais de
+        saúde.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="una-sus"
+      labelledBy="tab-una-sus"
+      hidden
+      eyebrow="UNA-SUS · BRASIL"
+      meta="Universidade Aberta do SUS — Fiocruz / Ministério da Saúde"
+    >
+      <p>
+        Na UNA-SUS — Universidade Aberta do SUS, uma iniciativa do Ministério
+        da Saúde baseada na Fiocruz em Brasília — atuo como assessor vinculado
+        à Secretaria Executiva. A UNA-SUS é uma rede colaborativa de
+        instituições públicas de ensino superior que oferece cursos de
+        educação a distância para profissionais de saúde em todo o país. Seu
+        objetivo é apoiar a formação e a educação permanente, contribuindo
+        para a melhoria dos serviços no Sistema Único de Saúde (SUS).
+      </p>
+      <p>
+        Nos últimos anos, tenho concentrado minha atuação em duas frentes
+        principais:
+      </p>
+      <p>
+        (1) o desenvolvimento de atividades educacionais inovadoras voltadas
+        para os programas de provimento e fixação de médicos na Atenção
+        Primária à Saúde no Brasil — o Programa Mais Médicos para o Brasil e
+        o Programa Médicos pelo Brasil; e
+      </p>
+      <p>
+        (2) a cooperação internacional para o fortalecimento da formação em
+        saúde em países de língua portuguesa.
+      </p>
+      <p>
+        No âmbito dos programas nacionais de provimento e fixação de médicos
+        (frente 1), as inovações educacionais que venho desenvolvendo incluem
+        o desenho de atividades de preceptoria a distância e encontros
+        síncronos em pequenos grupos, destinados ao treinamento em
+        comunicação clínica, raciocínio clínico, medicina baseada em
+        evidências e cuidado de pacientes com multimorbidade, polifarmácia e
+        necessidades complexas de saúde. Essas atividades compõem a
+        Especialização em Medicina de Família e Comunidade, com duração de
+        dois anos.
+      </p>
+      <p>
+        Além das atividades assíncronas tutoradas, os alunos participam de
+        encontros síncronos semanais em grupos de 12 médicos em formação
+        acompanhados por um facilitador. Essas sessões são apoiadas por
+        videoaulas, exercícios práticos, vídeos instrucionais e manuais que
+        orientam os 1.500 facilitadores na condução de cada encontro. Ao
+        longo dos dois anos da especialização, os alunos compartilham
+        consultas reais videogravadas para discussão em grupo utilizando a
+        metodologia ALOBA e apresentam casos clínicos reais, que servem de
+        base para o aprendizado coletivo.
+      </p>
+      <p>
+        A primeira edição da Especialização é ofertada por oito universidades
+        brasileiras e conta com 40 coordenadores de atividades, 1.500 tutores
+        e 16.000 médicos em formação espalhados por todo o país, incluindo
+        zonas rurais, áreas de difícil acesso, comunidades quilombolas,
+        comunidades indígenas, comunidades ribeirinhas e pessoas privadas de
+        liberdade. A criação dessa ampla estrutura de governança tem
+        garantido que informações, orientações e feedback circulem em tempo
+        oportuno nos dois sentidos — da coordenação nacional da UNA-SUS até
+        os alunos e, ao mesmo tempo, das experiências e demandas dos alunos
+        de volta para nós. Essa dinâmica fortalece a qualidade pedagógica,
+        garante alinhamento com os padrões nacionais de formação e permite
+        constante aprimoramento da experiência de ensino-aprendizagem
+        oferecida pela UNA-SUS.
+      </p>
+      <p>
+        Neste momento, os materiais produzidos para essas atividades estão
+        sendo convertidos em três livros para que médicos que atuam na
+        Atenção Primária, docentes em universidades e preceptores de
+        programas de residência em Medicina de Família e Comunidade possam
+        utilizá-los como referência didática em sessões de ensino, ampliando
+        o alcance e a utilidade prática dos conteúdos desenvolvidos.
+      </p>
+      <p>
+        Nas ações de cooperação internacional para o fortalecimento da
+        formação em saúde em países de língua portuguesa (2), atuei no
+        estabelecimento da parceria entre Brasil e Angola para a criação de
+        um polo de produção e oferta de cursos à distância para profissionais
+        de saúde em Luanda — ver detalhes na seção Angola. Atualmente,
+        estamos desenvolvendo um programa de formação para o fortalecimento
+        da Atenção Primária à Saúde em países de língua portuguesa. Como
+        primeiro passo, iniciamos a produção de um módulo piloto, dedicado a
+        explorar o conceito de Modelos de Cuidado, apresentando seus
+        fundamentos e demonstrando como esses modelos se estruturam nos
+        diferentes países lusófonos.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="angola"
+      labelledBy="tab-angola"
+      hidden
+      eyebrow="ANGOLA · DESDE 2022"
+      meta="Colégio de Medicina Geral e Familiar — Ordem dos Médicos de Angola"
+    >
+      <p>
+        Desde outubro de 2022, venho colaborando com o Colégio de Medicina
+        Geral e Familiar da Ordem dos Médicos de Angola. Minha atuação no
+        país envolve o engajamento de stakeholders e a mobilização de
+        lideranças, com foco na criação de estratégias para fortalecer a
+        Atenção Primária à Saúde e a formação em Medicina de Família.
+      </p>
+      <p>
+        Atualmente, estamos elaborando um policy briefing que reúne as ações
+        prioritárias para qualificar a formação de médicos de família e
+        ampliar os Cuidados de Saúde Primários em Angola. Em paralelo,
+        promovo a colaboração entre Brasil e Angola para a criação de um polo
+        de produção e oferta de cursos à distância para profissionais de
+        saúde, em parceria com a UNA-SUS. Este projeto resultou na
+        assinatura, em março de 2024, de um <a
+          href="https://www.unasus.gov.br/noticia/fiocruz-e-universidade-agostinho-neto-assinam-memorando-de-entendimento-para-cooperacao-internacional"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline"
+          >Memorando de Entendimento entre a Fiocruz e a Universidade
+          Agostinho Neto</a
+        >, que estabeleceu as bases para o novo polo de capacitação em saúde
+        digital no país.
+      </p>
+      <p>
+        Nesse período, também participei de atividades acadêmicas em Luanda e
+        no Lubango, com foco em raciocínio clínico, medicina baseada em
+        evidências e pesquisa científica, colaborando com residentes e
+        docentes de Medicina de Família. Entre os frutos dessa parceria,
+        publicamos o <a
+          href="https://phcfm.org/index.php/PHCFM/article/view/4458"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline"
+          >primeiro artigo descrevendo a trajetória da medicina geral e
+          familiar em Angola</a
+        >, que fortaleceu a visibilidade da especialidade e abriu caminho
+        para novas iniciativas.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="mocambique"
+      labelledBy="tab-mocambique"
+      hidden
+      eyebrow="MOÇAMBIQUE · DESDE 2019"
+      meta="Departamento de Medicina Geral e Familiar — Universidade Eduardo Mondlane"
+    >
+      <p>
+        Minha atuação em Moçambique envolve também o engajamento de
+        stakeholders e a mobilização de lideranças, com o objetivo de criar
+        estratégias para fortalecer a Atenção Primária à Saúde e a formação
+        em Medicina de Família, contribuindo para que o país avance rumo a
+        um sistema de cuidados mais integrado, abrangente e sustentável.
+      </p>
+      <p>
+        Desde 2019, quando estabeleci o primeiro contato com a Dra. Yolanda
+        Marcelino durante a conferência WONCA Africa em Kampala, Uganda,
+        venho colaborando com o Departamento de Medicina Geral e Familiar da
+        Universidade Eduardo Mondlane, em Maputo. Dessa parceria resultou a
+        publicação de um artigo científico sobre a Medicina de Família em
+        Moçambique, marcando o início de uma cooperação acadêmica que se
+        consolidou ao longo dos anos. Desde março de 2025, venho trabalhando
+        com um grupo de jovens lideranças da Medicina de Família moçambicana,
+        egressos da Universidade Eduardo Mondlane, na condução de um projeto
+        inovador para os cuidados de saúde primários no país. Por meio de uma
+        pesquisa participativa, estamos analisando as fragilidades do modelo
+        atualmente vigente e elaborando conjuntamente uma proposta de novo
+        modelo de cuidados, capaz de permitir a transição de um formato
+        verticalizado e seletivo para um modelo abrangente, centrado nas
+        necessidades de saúde das pessoas e contínuo ao longo do tempo. Nos
+        últimos seis meses, temos realizado reuniões online quinzenais,
+        dedicadas à análise do modelo de cuidados vigente em Moçambique a
+        partir do framework 5S-5M-5C.
+      </p>
+      <p>
+        Atualmente, estamos desenhando a intervenção piloto, que inclui tanto
+        a implementação de um novo modelo de atenção quanto a introdução do
+        registro eletrônico de pacientes nos cuidados primários — um recurso
+        ainda incipiente no país. Aqui neste projeto também as ferramentas de
+        pesquisa de implementação têm sido essenciais para que possamos gerar
+        evidências que sustentem diálogos qualificados com tomadores de
+        decisão e stakeholders.
+      </p>
+    </ProjectSection>
+
+    <ProjectSection
+      id="besrour"
+      labelledBy="tab-besrour"
+      hidden
+      eyebrow="CENTRO BESROUR · DESDE 2015"
+      meta="Universidade de Oxford (anteriormente CFPC, Canadá)"
+    >
+      <p>
+        Desde 2015, sou membro ativo do Centro Besrour e participo
+        regularmente dos encontros promovidos pelo centro. Colaboro em
+        iniciativas voltadas à capacitação em pesquisa científica, além de
+        atuar na aproximação de colegas de países lusófonos à rede de
+        colaboração global que o grupo promove.
+      </p>
+      <p>
+        O <a
+          href="https://www.cfpc.ca/en/about-us/the-besrour-centre/about"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline"
+          >Centro Besrour teve seu início sediado no Colégio de Médicos de
+          Família do Canadá</a
+        >. Apesar da mudança de sede recente para a <a
+          href="https://www.phc.ox.ac.uk/news/university-of-oxford-announces-new-professorship-and-centre-for-global-primary-care-with-support-from-dr-sadok-besrour"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent hover:underline">Universidade de Oxford</a
+        >, sua visão segue sendo a de um mundo onde ninguém fique para trás
+        no acesso a cuidados primários de qualidade, e sua missão, fomentar a
+        colaboração para o avanço da Medicina de Família no cenário
+        internacional. Seus valores incluem equidade (reconhecendo a dignidade
+        de cada ser humano e apoiando a justa distribuição de recursos e
+        acesso para grupos marginalizados e vulneráveis), justiça (defendendo
+        o direito de todos a usufruírem de maneira justa e imparcial dos
+        benefícios da sociedade, incluindo o direito à saúde), excelência
+        (mantendo os mais altos padrões de qualidade, cuidado centrado no
+        paciente, integridade, profissionalismo e liderança), reciprocidade
+        (promovendo a troca colaborativa e multidirecional de experiências,
+        conhecimentos e capacitação entre parceiros e comunidades) e respeito
+        (valorizando as culturas, normas e perspectivas de cada pessoa).
+      </p>
+    </ProjectSection>
+  </div>
+</Base>
+
+<script>
+  (function () {
+    const tabs = Array.from(
+      document.querySelectorAll<HTMLButtonElement>("[data-tab]")
+    );
+    if (tabs.length === 0) return;
+
+    const ACTIVE = ["text-accent", "border-accent"];
+    const INACTIVE = [
+      "text-slate-600",
+      "dark:text-slate-400",
+      "border-transparent",
+      "hover:text-accent",
+    ];
+
+    function showTab(id: string) {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.tab === id;
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        if (isActive) {
+          tab.classList.remove(...INACTIVE);
+          tab.classList.add(...ACTIVE);
+        } else {
+          tab.classList.remove(...ACTIVE);
+          tab.classList.add(...INACTIVE);
+        }
+      });
+      document
+        .querySelectorAll<HTMLElement>("[role='tabpanel']")
+        .forEach((panel) => {
+          panel.hidden = panel.id !== id;
+        });
+    }
+
+    const validIds = new Set(tabs.map((t) => t.dataset.tab));
+    const defaultId = tabs[0].dataset.tab!;
+    const hashId = window.location.hash.slice(1);
+    if (validIds.has(hashId) && hashId !== defaultId) {
+      showTab(hashId);
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const id = tab.dataset.tab;
+        if (!id) return;
+        showTab(id);
+        history.replaceState(null, "", "#" + id);
+      });
+    });
+
+    window.addEventListener("hashchange", () => {
+      const id = window.location.hash.slice(1);
+      if (validIds.has(id)) showTab(id);
+    });
+  })();
+</script>
