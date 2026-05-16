@@ -11,29 +11,53 @@ const dict = {
   pt: {
     nav: {
       home: { label: "Início", href: "/" },
-      impact: { label: "Impacto", href: "/impact" },
-      simulate: { label: "Simulador", href: "/simulate" },
+      impact: { label: "Impacto", href: "/impacto" },
+      simulate: { label: "Simulador", href: "/simulador" },
       projects: { label: "Projetos", href: "/projetos" },
       about: { label: "Sobre", href: "/sobre" },
     },
-    other: { code: "EN", href: "/en/", aria: "Switch to English" },
+    other: { code: "EN", aria: "Switch to English" },
     themeAria: "Alternar tema claro/escuro",
   },
   en: {
     nav: {
       home: { label: "Home", href: "/en/" },
       impact: { label: "Impact", href: "/en/impact" },
-      simulate: { label: "Simulate", href: "/en/simulate" },
+      simulate: { label: "Simulator", href: "/en/simulator" },
       projects: { label: "Projects", href: "/en/projects" },
       about: { label: "About", href: "/en/about" },
     },
-    other: { code: "PT", href: "/", aria: "Mudar para português" },
+    other: { code: "PT", aria: "Mudar para português" },
     themeAria: "Toggle light/dark theme",
   },
 };
 
 const t = dict[lang as "pt" | "en"] ?? dict.pt;
 const brandHref = lang === "en" ? "/en/" : "/";
+
+// Bidirectional path map (PT <-> EN). Preserves the current page when switching
+// languages.
+const localePairs: Array<[string, string]> = [
+  ["/", "/en/"],
+  ["/sobre", "/en/about"],
+  ["/projetos", "/en/projects"],
+  ["/impacto", "/en/impact"],
+  ["/impacto-visual", "/en/visual-impact"],
+  ["/simulador", "/en/simulator"],
+];
+const ptToEn = new Map(localePairs);
+const enToPt = new Map(localePairs.map(([pt, en]) => [en, pt]));
+
+function normalizePath(p: string): string {
+  if (p === "/" || p === "/en/") return p;
+  return p.endsWith("/") ? p.slice(0, -1) : p;
+}
+
+const currentPath = normalizePath(Astro.url.pathname);
+const otherHref =
+  lang === "en"
+    ? enToPt.get(currentPath) ?? "/"
+    : ptToEn.get(currentPath) ?? "/en/";
 ---
 
 <header class="border-b-[0.5px] border-slate-200 dark:border-slate-700">
@@ -60,7 +84,7 @@ const brandHref = lang === "en" ? "/en/" : "/";
 
     <div class="flex items-center gap-3">
       <a
-        href={t.other.href}
+        href={otherHref}
         aria-label={t.other.aria}
         class="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-accent border-l-[0.5px] border-slate-200 dark:border-slate-700 pl-3 transition-colors"
       >

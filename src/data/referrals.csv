@@ -1,0 +1,32 @@
+Medical specialty / test,Relative risk (95 % CI),Population at risk,Average referrals per year,motivo
+Cardiology,0.40 (0.38 - 0.43),600000,2 008,"A maioria dos Hemogramas são solicitados simplesmente para acompanhar um pedido de exame de sangue. Isto é desnecessário e não resulta em mudança na qualidade do cuidado do paciente. Por exemplo, se solicitamos exames de glicose e Hemoglobina Glicosilada para o manejo de um paciente com Diabete Mellitus, não é necessário solicitar também um Hemograma. Este exame não fará nenhuma diferença no cuidado deste paciente."
+Neurology,0.50 (0.47 - 0.53),600000,1 835,empty
+Psychiatry,0.45 (0.40 - 0.50),600000,897,empty
+Dermatology,0.49 (0.47 - 0.51),600000,4 144,empty
+Pulmonology,0.54 (0.48 - 0.60),600000,903,empty
+Infectious diseases,0.74 (0.63 - 0.87),600000,290,empty
+Urology,0.57 (0.54 - 0.61),600000,1 762,empty
+Allergology,0.54 (0.47 - 0.60),600000,480,empty
+Nephrology,0.63 (0.57 - 0.70),600000,603,empty
+Endocrinology,0.42 (0.38 - 0.46),600000,1 021,empty
+Gastroenterology,0.38 (0.34 - 0.42),600000,867,empty
+Angiology,0.35 (0.32 - 0.39),600000,1 030,empty
+Rheumatology,0.47 (0.42 - 0.52),600000,830,empty
+Physiotherapy,1.17 (1.11 - 1.23),600000,2 390,empty
+Rehabilitation,1.68 (1.57 - 1.79),600000,1 173,empty
+Ophthalmology,1.09 (1.06 - 1.12),600000,8 713,empty
+ENT,0.71 (0.67 - 0.75),600000,2 269,empty
+Orthopaedics,0.52 (0.50 - 0.54),600000,4 934,empty
+Gynaecology,0.86 (0.79 - 0.94),600000,738,empty
+HRPC,0.66 (0.60 - 0.72),600000,991,empty
+Eye surgery,1.21 (1.17 - 1.26),600000,4 458,empty
+Gynaecological surgery,0.87 (0.81 - 0.95),600000,989,empty
+Orthopaedic surgery,1.22 (1.02 - 1.47),600000,147,empty
+General surgery,0.91 (0.86 - 0.96),600000,1 968,empty
+Plastic surgery,1.19 (1.10 - 1.29),600000,859,empty
+Vascular surgery,0.87 (0.77 - 0.99),600000,359,empty
+Echocardiogram,0.66 (0.62 - 0.71),600000,1 201,empty
+Spirometry,0.96 (0.85 - 1.09),600000,385,empty
+Colonoscopy,0.76 (0.68 - 0.85),600000,510,empty
+EGD,0.49 (0.45 - 0.53),600000,1 090,empty
+CPX test,0.72 (0.64 - 0.81),600000,431,empty

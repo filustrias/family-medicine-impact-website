@@ -1,0 +1,160 @@
+---
+import { getDisplayName, type ImpactItem } from "../data/impact-data";
+
+interface Props {
+  category: "detection" | "tests" | "referrals" | "hospital";
+  items: ImpactItem[];
+  visibleCount: number;
+  columnLabels: {
+    name: string;
+    rr: string;
+    observed: string;
+    delta: string;
+    newValue: string;
+  };
+  expandLabel: string;
+  collapseLabel: string;
+  locale: "pt-BR" | "en-US";
+}
+
+const {
+  category,
+  items,
+  visibleCount,
+  columnLabels,
+  expandLabel,
+  collapseLabel,
+  locale,
+} = Astro.props;
+
+function fmt(n: number): string {
+  return Math.round(n).toLocaleString(locale);
+}
+
+const hasMore = items.length > visibleCount;
+---
+
+<div data-impact-table>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b-[0.5px] border-slate-200 dark:border-slate-700">
+          <th
+            class="text-left py-2 pr-3 text-[11px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 whitespace-nowrap"
+            >{columnLabels.name}</th
+          >
+          <th
+            class="text-left py-2 px-3 text-[11px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 whitespace-nowrap"
+            >{columnLabels.rr}</th
+          >
+          <th
+            class="text-right py-2 px-3 text-[11px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 whitespace-nowrap"
+            >{columnLabels.observed}</th
+          >
+          <th
+            class="text-right py-2 px-3 text-[11px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 whitespace-nowrap"
+            >{columnLabels.delta}</th
+          >
+          <th
+            class="text-right py-2 pl-3 text-[11px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 whitespace-nowrap"
+            >{columnLabels.newValue}</th
+          >
+        </tr>
+      </thead>
+      <tbody>
+        {
+          items.map((it, idx) => {
+            const isExtra = idx >= visibleCount;
+            return (
+              <tr
+                data-category={category}
+                data-rr={it.rr}
+                data-pop={it.pop}
+                data-base={it.baseline}
+                data-extra-row={isExtra ? "true" : undefined}
+                hidden={isExtra}
+                class="border-b-[0.5px] border-slate-100 dark:border-slate-800 even:bg-slate-50/40 dark:even:bg-slate-900/30"
+              >
+                <td class="py-2 pr-3 text-slate-700 dark:text-slate-300">
+                  {getDisplayName(category, it.name, locale)}
+                </td>
+                <td class="py-2 px-3 text-slate-500 dark:text-slate-500 tabular-nums whitespace-nowrap">
+                  {it.rr_ci}
+                </td>
+                <td class="py-2 px-3 text-right text-slate-700 dark:text-slate-300 tabular-nums">
+                  {fmt(it.baseline)}
+                </td>
+                <td
+                  class="py-2 px-3 text-right tabular-nums text-slate-500 dark:text-slate-500"
+                  data-delta-display
+                >
+                  0
+                </td>
+                <td
+                  class="py-2 pl-3 text-right text-slate-900 dark:text-slate-100 tabular-nums"
+                  data-new-value-display
+                >
+                  {fmt(it.baseline)}
+                </td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
+    </table>
+  </div>
+
+  {
+    hasMore && (
+      <button
+        type="button"
+        data-table-toggle
+        data-expand-label={expandLabel}
+        data-collapse-label={collapseLabel}
+        aria-expanded="false"
+        class="mt-4 inline-flex items-center gap-1.5 text-sm text-accent hover:underline cursor-pointer"
+      >
+        <span
+          class="inline-block transition-transform"
+          data-toggle-icon
+          aria-hidden="true"
+        >
+          ›
+        </span>
+        <span data-toggle-label>{expandLabel}</span>
+      </button>
+    )
+  }
+</div>
+
+<script>
+  (function () {
+    const tables = document.querySelectorAll<HTMLElement>(
+      "[data-impact-table]"
+    );
+    tables.forEach((wrap) => {
+      const btn = wrap.querySelector<HTMLButtonElement>("[data-table-toggle]");
+      if (!btn) return;
+      const extras = wrap.querySelectorAll<HTMLElement>("[data-extra-row]");
+      const expandLabel = btn.dataset.expandLabel ?? "";
+      const collapseLabel = btn.dataset.collapseLabel ?? "";
+      const icon = btn.querySelector<HTMLElement>("[data-toggle-icon]");
+      const labelEl = btn.querySelector<HTMLElement>("[data-toggle-label]");
+
+      btn.addEventListener("click", () => {
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        const next = !expanded;
+        btn.setAttribute("aria-expanded", String(next));
+        if (labelEl) {
+          labelEl.textContent = next ? collapseLabel : expandLabel;
+        }
+        if (icon) {
+          icon.style.transform = next ? "rotate(90deg)" : "rotate(0deg)";
+        }
+        extras.forEach((r) => {
+          r.hidden = !next;
+        });
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,73 @@
+---
+interface CardLabel {
+  number: string;
+  title: string;
+  caption: string;
+}
+
+interface Props {
+  labels: {
+    detection: CardLabel;
+    tests: CardLabel;
+    referrals: CardLabel;
+    hospital: CardLabel;
+  };
+}
+
+const { labels } = Astro.props;
+
+const cards = [
+  {
+    key: "detection" as const,
+    href: "#detection",
+    number: labels.detection.number,
+    title: labels.detection.title,
+    caption: labels.detection.caption,
+  },
+  {
+    key: "tests" as const,
+    href: "#tests",
+    number: labels.tests.number,
+    title: labels.tests.title,
+    caption: labels.tests.caption,
+  },
+  {
+    key: "referrals" as const,
+    href: "#referrals",
+    number: labels.referrals.number,
+    title: labels.referrals.title,
+    caption: labels.referrals.caption,
+  },
+  {
+    key: "hospital" as const,
+    href: "#hospital",
+    number: labels.hospital.number,
+    title: labels.hospital.title,
+    caption: labels.hospital.caption,
+  },
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+  {
+    cards.map((c) => (
+      <a
+        href={c.href}
+        class="block bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[10px] p-5 md:p-6 no-underline transition-all duration-200 hover:border-accent hover:-translate-y-px"
+      >
+        <span class="block text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 dark:text-slate-500 mb-3">
+          {c.number} / {c.title}
+        </span>
+        <span
+          data-impact-value={c.key}
+          class="block text-3xl md:text-4xl font-semibold tracking-[-0.02em] tabular-nums mb-2 text-slate-500 dark:text-slate-500"
+        >
+          0
+        </span>
+        <span class="block text-[12.5px] leading-relaxed text-slate-600 dark:text-slate-400">
+          {c.caption}
+        </span>
+      </a>
+    ))
+  }
+</div>

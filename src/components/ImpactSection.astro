@@ -1,0 +1,92 @@
+---
+import ImpactTable from "./ImpactTable.astro";
+import type { ImpactItem } from "../data/impact-data";
+
+interface Props {
+  anchorId: "detection" | "tests" | "referrals" | "hospital";
+  eyebrow: string;
+  title: string;
+  meta: string;
+  category: "detection" | "tests" | "referrals" | "hospital";
+  items: ImpactItem[];
+  visibleCount: number;
+  expandLabel: string;
+  collapseLabel: string;
+  paperUrl: string;
+  paperLinkLabel: string;
+  columnLabels: {
+    name: string;
+    rr: string;
+    observed: string;
+    delta: string;
+    newValue: string;
+  };
+  locale: "pt-BR" | "en-US";
+}
+
+const {
+  anchorId,
+  eyebrow,
+  title,
+  meta,
+  category,
+  items,
+  visibleCount,
+  expandLabel,
+  collapseLabel,
+  paperUrl,
+  paperLinkLabel,
+  columnLabels,
+  locale,
+} = Astro.props;
+---
+
+<section id={anchorId} class="scroll-mt-32">
+  <div
+    class="text-[11px] uppercase tracking-[0.14em] font-medium text-accent mb-2"
+  >
+    {eyebrow}
+  </div>
+  <h2
+    class="text-2xl md:text-3xl font-semibold tracking-[-0.025em] text-slate-900 dark:text-slate-100 mb-1.5"
+  >
+    {title}
+  </h2>
+  <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">{meta}</p>
+
+  <div
+    class="space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6"
+  >
+    <slot name="context" />
+  </div>
+
+  <div
+    class="space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6"
+  >
+    <slot name="nuance" />
+  </div>
+
+  <ImpactTable
+    category={category}
+    items={items}
+    visibleCount={visibleCount}
+    columnLabels={columnLabels}
+    expandLabel={expandLabel}
+    collapseLabel={collapseLabel}
+    locale={locale}
+  />
+
+  <div
+    class="space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mt-8"
+  >
+    <slot name="interpretation" />
+  </div>
+
+  <a
+    href={paperUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-block mt-6 text-sm text-accent hover:underline"
+    >{paperLinkLabel} →</a
+  >
+</section>

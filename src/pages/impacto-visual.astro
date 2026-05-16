@@ -1,0 +1,160 @@
+---
+import Base from "../layouts/Base.astro";
+import ImpactBar from "../components/ImpactBar.astro";
+import BubbleChart from "../components/BubbleChart.astro";
+import {
+  detectionData,
+  testsData,
+  referralsData,
+  hospitalData,
+} from "../data/impact-data";
+
+interface Section {
+  number: string;
+  eyebrow: string;
+  title: string;
+  meta: string;
+  category: "detection" | "tests" | "referrals" | "hospital";
+  items: typeof detectionData.items;
+}
+
+const sections: Section[] = [
+  {
+    number: "01",
+    eyebrow: "DETECÇÃO DE CONDIÇÕES CRÔNICAS",
+    title: "Médicos de família detectam mais",
+    meta: "28 condições · BMC Family Practice (2021)",
+    category: "detection",
+    items: detectionData.items,
+  },
+  {
+    number: "02",
+    eyebrow: "EXAMES LABORATORIAIS",
+    title: "… e solicitam menos exames",
+    meta: "30 exames · BMC Family Practice (2021)",
+    category: "tests",
+    items: testsData.items,
+  },
+  {
+    number: "03",
+    eyebrow: "ENCAMINHAMENTOS AO NÍVEL SECUNDÁRIO",
+    title: "Encaminham com critério",
+    meta: "31 especialidades · BMJ Open (2022)",
+    category: "referrals",
+    items: referralsData.items,
+  },
+  {
+    number: "04",
+    eyebrow: "INTERNAÇÕES HOSPITALARES",
+    title: "Reduzem internações",
+    meta: "14 condições · PLOS Glob Public Health (2023)",
+    category: "hospital",
+    items: hospitalData.items,
+  },
+];
+---
+
+<Base
+  lang="pt"
+  title="Impacto visual · family-medicine-impact"
+  description="Visualização experimental do impacto da formação em Medicina de Família — quatro domínios como bolhas reativas à proporção de médicos de família."
+>
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pt-12 pb-8 md:pt-16 md:pb-10"
+  >
+    <p
+      class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-3"
+    >
+      IMPACTO VISUAL · EXPERIMENTAL
+    </p>
+    <h1
+      class="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.035em] text-slate-900 dark:text-slate-100 mb-4"
+    >
+      Quatro domínios em bolhas
+    </h1>
+    <p class="text-base md:text-lg font-medium text-accent">
+      Detecção, exames, encaminhamentos, internações. Cada bolha é um evento.
+      Tamanho proporcional ao volume anual. Mova a barra abaixo e veja todos
+      reagirem ao mesmo tempo.
+    </p>
+  </section>
+
+  <ImpactBar
+    labels={{
+      generalists: "Generalistas",
+      familyPhysicians: "Médicos de família",
+      instruction: "Mova para simular cenários",
+      reset: "Resetar",
+    }}
+  />
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-6 md:mt-8 mb-8 md:mb-10"
+  >
+    <div
+      class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-slate-600 dark:text-slate-400"
+    >
+      <span class="inline-flex items-center gap-1.5">
+        <span
+          class="inline-block w-3 h-3 rounded-full bg-green-500 border border-green-700"
+        ></span>
+        Cenário favorável
+      </span>
+      <span class="inline-flex items-center gap-1.5">
+        <span
+          class="inline-block w-3 h-3 rounded-full bg-red-400 border border-red-600"
+        ></span>
+        Cenário desfavorável
+      </span>
+      <span class="inline-flex items-center gap-1.5">
+        <span
+          class="inline-block w-3 h-3 rounded-full bg-slate-300 border border-slate-500"
+        ></span>
+        Cenário-base (≈ 33,6%)
+      </span>
+      <span class="ml-auto text-slate-500 dark:text-slate-500 hidden sm:inline">
+        Passe o mouse sobre cada bolha para detalhes.
+      </span>
+    </div>
+  </section>
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-12 md:pb-16 space-y-10 md:space-y-14"
+  >
+    {
+      sections.map((s) => (
+        <article>
+          <header class="mb-4">
+            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 dark:text-slate-500 mb-1.5">
+              {s.number} / {s.eyebrow}
+            </p>
+            <h2 class="text-xl md:text-2xl font-semibold tracking-[-0.025em] text-slate-900 dark:text-slate-100 mb-1">
+              {s.title}
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">{s.meta}</p>
+          </header>
+          <div class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[10px] p-3 md:p-4">
+            <BubbleChart
+              items={s.items}
+              category={s.category}
+              locale="pt-BR"
+            />
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-12 md:pb-16 space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+  >
+    <p>
+      Esta página é um experimento de visualização — uma alternativa às
+      tabelas reativas da página principal de <a
+        href="/impacto"
+        class="text-accent hover:underline">impacto</a
+      >. Se a forma funcionar bem como leitura, podemos integrar; caso
+      contrário, removemos.
+    </p>
+  </section>
+</Base>

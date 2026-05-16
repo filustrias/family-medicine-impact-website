@@ -1,0 +1,313 @@
+---
+import { getDisplayName, type ImpactItem } from "../data/impact-data";
+
+interface Props {
+  items: ImpactItem[];
+  category: "detection" | "tests" | "referrals" | "hospital";
+  locale: "pt-BR" | "en-US";
+}
+
+const { items, category, locale } = Astro.props;
+
+function computeR(value: number): number {
+  // Power 0.8 (between linear and sqrt) gives stronger visual response to
+  // slider movement than pure sqrt while keeping a reasonable dynamic range.
+  return 6 + Math.pow(Math.max(0, value), 0.8) * 0.014;
+}
+
+// Greedy circle packing — build time, deterministic.
+// Place the largest at center (0,0); for each subsequent, find the position
+// closest to origin that does not overlap any placed bubble.
+function packCircles(
+  radii: number[]
+): Array<{ x: number; y: number }> {
+  const placed: Array<{ x: number; y: number; r: number }> = [];
+  const positions: Array<{ x: number; y: number }> = [];
+  const NUM_ANGLES = 240;
+  const STEP = 1.5;
+  const MAX_RAD = 600;
+
+  radii.forEach((r, i) => {
+    if (i === 0) {
+      placed.push({ x: 0, y: 0, r });
+      positions.push({ x: 0, y: 0 });
+      return;
+    }
+
+    let best = { x: 0, y: 0 };
+    let bestDistSq = Infinity;
+
+    for (let a = 0; a < NUM_ANGLES; a++) {
+      const angle = (a / NUM_ANGLES) * 2 * Math.PI;
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+
+      // Step outward to find first non-overlapping radius along this ray
+      let validRad = -1;
+      for (let rad = r; rad <= MAX_RAD; rad += STEP) {
+        const x = rad * cos;
+        const y = rad * sin;
+        let overlap = false;
+        for (const p of placed) {
+          const dx = x - p.x;
+          const dy = y - p.y;
+          const sumR = r + p.r;
+          if (dx * dx + dy * dy < sumR * sumR) {
+            overlap = true;
+            break;
+          }
+        }
+        if (!overlap) {
+          validRad = rad;
+          break;
+        }
+      }
+      if (validRad < 0) continue;
+
+      const x = validRad * cos;
+      const y = validRad * sin;
+      const dsq = x * x + y * y;
+      if (dsq < bestDistSq) {
+        bestDistSq = dsq;
+        best = { x, y };
+      }
+    }
+
+    placed.push({ x: best.x, y: best.y, r });
+    positions.push(best);
+  });
+
+  return positions;
+}
+
+const sorted = [...items].sort((a, b) => b.baseline - a.baseline);
+const radii = sorted.map((it) => computeR(it.baseline));
+const positions = packCircles(radii);
+
+const bubbles = sorted.map((it, i) => ({
+  displayName: getDisplayName(category, it.name, locale),
+  rr: it.rr,
+  pop: it.pop,
+  baseline: it.baseline,
+  x: positions[i].x,
+  y: positions[i].y,
+  r: radii[i],
+}));
+
+// ViewBox sized to bounding box of cluster plus padding
+const padding = 20;
+const maxR = Math.max(...bubbles.map((b) => Math.abs(b.x) + b.r));
+const maxRy = Math.max(...bubbles.map((b) => Math.abs(b.y) + b.r));
+const halfW = Math.max(maxR, 280) + padding;
+const halfH = Math.max(maxRy, 200) + padding;
+const viewW = halfW * 2;
+const viewH = halfH * 2;
+
+function fmt(n: number): string {
+  return Math.round(n).toLocaleString(locale);
+}
+---
+
+<svg
+  viewBox={`${-halfW} ${-halfH} ${viewW} ${viewH}`}
+  class="w-full h-auto"
+  role="img"
+  data-bubble-chart
+  data-category={category}
+>
+  {
+    bubbles.map((b, i) => {
+      const showValue = b.r > 28;
+      const nameFs = Math.min(13, Math.max(6, b.r * 0.45));
+      const valueFs = Math.min(11, Math.max(7, b.r * 0.22));
+      return (
+        <g
+          data-bubble
+          data-rr={b.rr}
+          data-pop={b.pop}
+          data-base={b.baseline}
+          data-name={b.displayName}
+          transform={`translate(${b.x.toFixed(2)}, ${b.y.toFixed(2)})`}
+        >
+          <g
+            class="bubble-float"
+            style={`animation-delay: -${(i * 0.41).toFixed(2)}s;`}
+          >
+            <circle
+              r={b.r.toFixed(2)}
+              fill="rgb(203 213 225)"
+              stroke="rgb(100 116 139)"
+              stroke-width="1.5"
+              data-bubble-circle
+            />
+            <text
+              text-anchor="middle"
+              dy={showValue ? `-${(b.r * 0.08).toFixed(2)}` : "0.35em"}
+              fill="rgb(15 23 42)"
+              font-size={nameFs.toFixed(1)}
+              font-weight="500"
+              data-bubble-name
+              style="opacity: 0.95; pointer-events: none;"
+            >
+              {b.displayName}
+            </text>
+            <text
+              text-anchor="middle"
+              dy={`${(b.r * 0.45).toFixed(2)}`}
+              fill="rgb(15 23 42)"
+              font-size={valueFs.toFixed(1)}
+              font-weight="500"
+              data-bubble-value
+              style={`opacity: ${showValue ? 0.85 : 0}; pointer-events: none;`}
+            >
+              {fmt(b.baseline)}
+            </text>
+          </g>
+          <title>{`${b.displayName}: ${fmt(b.baseline)}`}</title>
+        </g>
+      );
+    })
+  }
+</svg>
+
+<style>
+  [data-bubble-chart] text {
+    font-family: inherit;
+  }
+  [data-bubble-circle] {
+    transition: r 0.15s ease-out, fill 0.25s ease, stroke 0.25s ease;
+  }
+  .bubble-float {
+    animation: bubble-float 8s ease-in-out infinite;
+  }
+  @keyframes bubble-float {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(2.75px, -4.4px);
+    }
+    50% {
+      transform: translate(-1.1px, -6.6px);
+    }
+    75% {
+      transform: translate(-3.85px, -2.75px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bubble-float {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  import {
+    calc,
+    formatNumber,
+    formatDelta,
+    getChangeClass,
+    type ImpactCategoryKey,
+  } from "../scripts/impact-calc";
+
+  (function () {
+    const roots = document.querySelectorAll<SVGSVGElement>(
+      "[data-bubble-chart]"
+    );
+    if (roots.length === 0) return;
+
+    const locale: "pt-BR" | "en-US" =
+      document.documentElement.lang === "en" ? "en-US" : "pt-BR";
+
+    const FILL_FAVORABLE = "rgb(34 197 94)"; // green-500
+    const FILL_UNFAVORABLE = "rgb(248 113 113)"; // red-400
+    const FILL_NEUTRAL = "rgb(203 213 225)"; // slate-300
+
+    const STROKE_FAVORABLE = "rgb(21 128 61)"; // green-700
+    const STROKE_UNFAVORABLE = "rgb(220 38 38)"; // red-600
+    const STROKE_NEUTRAL = "rgb(100 116 139)"; // slate-500
+
+    type Bubble = {
+      circle: SVGCircleElement;
+      nameEl: SVGTextElement | null;
+      valueEl: SVGTextElement | null;
+      titleEl: SVGTitleElement | null;
+      name: string;
+      rr: number;
+      pop: number;
+      base: number;
+    };
+
+    type Chart = {
+      category: ImpactCategoryKey;
+      bubbles: Bubble[];
+    };
+
+    const charts: Chart[] = Array.from(roots).map((root) => {
+      const category = (root.getAttribute("data-category") ??
+        "tests") as ImpactCategoryKey;
+      const bubbles: Bubble[] = Array.from(
+        root.querySelectorAll<SVGGElement>("[data-bubble]")
+      ).map((g) => {
+        const circle = g.querySelector<SVGCircleElement>(
+          "[data-bubble-circle]"
+        )!;
+        return {
+          circle,
+          nameEl: g.querySelector<SVGTextElement>("[data-bubble-name]"),
+          valueEl: g.querySelector<SVGTextElement>("[data-bubble-value]"),
+          titleEl: g.querySelector<SVGTitleElement>("title"),
+          name: g.getAttribute("data-name") ?? "",
+          rr: parseFloat(g.getAttribute("data-rr") ?? "1"),
+          pop: parseFloat(g.getAttribute("data-pop") ?? "0"),
+          base: parseFloat(g.getAttribute("data-base") ?? "0"),
+        };
+      });
+      return { category, bubbles };
+    });
+
+    function computeR(value: number): number {
+      return 6 + Math.pow(Math.max(0, value), 0.8) * 0.014;
+    }
+
+    function colorFor(
+      category: ImpactCategoryKey,
+      delta: number
+    ): { fill: string; stroke: string } {
+      const cls = getChangeClass(category, delta);
+      if (cls === "favorable")
+        return { fill: FILL_FAVORABLE, stroke: STROKE_FAVORABLE };
+      if (cls === "unfavorable")
+        return { fill: FILL_UNFAVORABLE, stroke: STROKE_UNFAVORABLE };
+      return { fill: FILL_NEUTRAL, stroke: STROKE_NEUTRAL };
+    }
+
+    function updateAll(pMF: number) {
+      charts.forEach(({ category, bubbles }) => {
+        bubbles.forEach((b) => {
+          const [newValue, delta] = calc(b.base, b.rr, pMF, b.pop);
+          const r = computeR(newValue);
+          b.circle.setAttribute("r", r.toFixed(2));
+          const c = colorFor(category, delta);
+          b.circle.setAttribute("fill", c.fill);
+          b.circle.setAttribute("stroke", c.stroke);
+
+          const showValue = r > 28;
+          if (b.valueEl) {
+            b.valueEl.style.opacity = showValue ? "0.85" : "0";
+            b.valueEl.textContent = formatNumber(newValue, locale);
+          }
+          if (b.titleEl) {
+            b.titleEl.textContent = `${b.name}: ${formatNumber(newValue, locale)} (${formatDelta(delta, locale)})`;
+          }
+        });
+      });
+    }
+
+    updateAll(0.336);
+
+    document.addEventListener("impact:proportion-change", ((e: CustomEvent) => {
+      updateAll(e.detail.pMF);
+    }) as EventListener);
+  })();
+</script>

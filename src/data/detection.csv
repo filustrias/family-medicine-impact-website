@@ -1,0 +1,29 @@
+Health condition,Detection of CHCs (95% CI),Population at risk,Cases per year,motivo
+Hypertension,1.15 (1.13 - 1.17),600000,11681,"Hipertensão é um problema prevalente em todas as sociedades, especialmente em uma população que vem envelhecendo, como a população brasileira. O diagnóstico aqui descrito envolve o registro correto do CID, bem como aferição de pressão arterial acima de 140/90 mmHg."
+Diabetes Mellitus,1.07 (1.04 - 1.11),600000,4089,"Diabetes é um problema prevalente em todas as sociedades, especialmente em uma população que vem envelhecendo, como a população brasileira. O diagnóstico aqui descrito envolve o registro correto do CID, bem como aferição de glicemia de jejum acima de 126 mg/dL ou Hemoglobina glicada acima de 6,5%."
+Hypothyroidism,1.51 (1.25 - 1.82),600000,79,"O diagnóstico aqui descrito envolve o registro correto do CID, bem como aferição de TSH acima de 10 mcg/dL."
+AIDS,1.19 (1.09 - 1.29),600000,415,"Diagnóstico de infecção pelo HIV pode ser feito facilmente em qualquer unidade de saúde através do teste rápido. Sua realização não depende somente do ato de realizar o procedimento, mas de ofertar diretamente para pacientes em risco de contrair o vírus. "
+Drug addiction,1.98 (1.76 - 2.22),600000,197,empty
+Alcohol abuse,1.72 (1.54 - 1.91),600000,237,"Problemas com uso de bebida alcoólica são prevalentes e, na maior parte das vezes, subdiagnosticados pro profissionais de saúde. Situações críticas, com uso extremo e comprometimento físico do paciente e deterioro das relações afetivas familiares acabam sendo diagnosticadas quando familiares trazem o paciente para consulta. Neste momento, muito estrago já está feito. Detectar este problema precocemente é parte do que Médicos de Família fazem de maneira qualificada."
+Depression,1.19 (1.14 - 1.26),600000,1119,empty
+Psychosis,1.20 (1.11 - 1.30),600000,466,empty
+Cardiac arrhythmias,1.31 (1.19 - 1.45),600000,412,empty
+Peripheral artery disease,2.41 (2.05 - 2.82),600000,114,empty
+Ischemic heart disease,1.38 (1.27 - 1.49),600000,499,empty
+Heart failure,1.69 (1.56 - 1.83),600000,482,empty
+Kidney failure,1.82 (1.64 - 2.02),600000,270,empty
+Osteoarthritis,1.11 (1.07 - 1.15),600000,3800,empty
+Rheumatic disorders,1.00 (0.92 - 1.10),600000,503,empty
+Neurological disorders,1.29 (1.24 - 1.34),600000,2092,empty
+Epilepsy,0.86 (0.79 - 0.94),600000,579,empty
+Stroke,1.44 (1.34 - 1.55),600000,586,empty
+Dementia,1.28 (1.16 - 1.42),600000,310,empty
+COPD,1.11 (1.02 - 1.21),600000,532,empty
+Asthma,1.28 (1.21 - 1.36),600000,782,empty
+Chronic hepatitis,1.31 (1.10 - 1.57),600000,84,empty
+Cirrhosis of the liver,1.03 (0.90 - 1.18),600000,212,empty
+Cancer,1.26 (1.17 - 1.36),600000,627,empty
+Neoplasia Men,1.11 (0.92 - 1.33),600000,92,empty
+Neoplasia Women,1.34 (1.11 - 1.62),600000,81,empty
+Breast cancer,1.42 (1.21 - 1.67),600000,122,empty
+Metastatic cancer,1.47 (0.96 - 2.26),600000,16,empty

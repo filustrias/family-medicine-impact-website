@@ -1,0 +1,745 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+
+<Base
+  lang="en"
+  title="Simulator · family-medicine-impact"
+  description="Municipal healthcare cost simulator: simulate how the number of family physicians affects costs in your municipality."
+>
+  <section
+    class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-8 pb-4 md:pt-10 md:pb-5"
+  >
+    <p
+      class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-2"
+    >
+      SIMULATOR
+    </p>
+    <h1
+      class="text-2xl md:text-3xl font-semibold tracking-[-0.025em] text-slate-900 dark:text-slate-100 mb-1.5"
+    >
+      Simulator of Family Physicians' Impact on Healthcare Costs in a
+      Municipality
+    </h1>
+    <p class="text-sm md:text-base text-slate-600 dark:text-slate-400">
+      Enter your municipality's data and see how the number of family
+      physicians can affect the volume of diagnoses, lab tests, referrals,
+      and hospital admissions — and their respective costs.
+    </p>
+  </section>
+
+  <!-- Slider sticky at top -->
+  <div
+    class="sticky top-0 z-40 backdrop-blur-sm bg-white/90 dark:bg-slate-950/90 border-y-[0.5px] border-slate-200 dark:border-slate-700"
+  >
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4">
+      <div class="flex items-baseline justify-between gap-3 mb-2">
+        <p
+          class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent truncate"
+        >
+          Simulation · Teams with Family doctors in this scenario
+        </p>
+        <p class="text-xl md:text-2xl font-semibold text-accent tabular-nums shrink-0">
+          <span id="sliderValue">50</span><span class="text-slate-400 dark:text-slate-600"
+            >/<span id="sliderMax">150</span></span
+          >
+        </p>
+      </div>
+      <div class="max-w-2xl mx-auto">
+        <input
+          id="fpSlider"
+          type="range"
+          min="0"
+          max="150"
+          value="50"
+          step="1"
+          class="w-full accent-[var(--color-accent)] cursor-pointer"
+        />
+        <div
+          class="mt-1 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-500"
+        >
+          <span>0</span>
+          <button
+            id="sliderReset"
+            type="button"
+            class="inline-flex items-center gap-1 hover:text-accent transition-colors cursor-pointer"
+          >
+            <span aria-hidden="true">↺</span> <span>Reset to current</span>
+          </button>
+          <span>Max</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-column panorama -->
+  <div
+    class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-6 md:pt-8 pb-10 md:pb-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5"
+  >
+    <!-- Col 1: Settings -->
+    <article>
+      <p
+        class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-1"
+      >
+        01 / SETTINGS
+      </p>
+      <h2
+        class="text-base md:text-lg font-semibold tracking-[-0.02em] text-slate-900 dark:text-slate-100 mb-3"
+      >
+        Municipality
+      </h2>
+      <div
+        class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[10px] p-3 md:p-4 space-y-2.5"
+      >
+        <div>
+          <label
+            for="populationSize"
+            class="block text-sm text-slate-700 dark:text-slate-300 mb-1"
+            >Population size</label
+          >
+          <input
+            id="populationSize"
+            type="number"
+            value="600000"
+            min="1000"
+            class="w-full bg-slate-50 dark:bg-slate-900 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[6px] px-2 py-1 text-sm tabular-nums text-slate-900 dark:text-slate-100 focus:outline-none focus:border-accent"
+          />
+        </div>
+        <div>
+          <label
+            for="healthTeams"
+            class="block text-sm text-slate-700 dark:text-slate-300 mb-1"
+            >Number of health teams</label
+          >
+          <input
+            id="healthTeams"
+            type="number"
+            value="150"
+            min="1"
+            class="w-full bg-slate-50 dark:bg-slate-900 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[6px] px-2 py-1 text-sm tabular-nums text-slate-900 dark:text-slate-100 focus:outline-none focus:border-accent"
+          />
+        </div>
+        <div>
+          <label
+            for="familyPhysicians"
+            class="block text-sm text-slate-700 dark:text-slate-300 mb-1"
+            >Teams with FP (current)</label
+          >
+          <input
+            id="familyPhysicians"
+            type="number"
+            value="50"
+            min="0"
+            class="w-full bg-slate-50 dark:bg-slate-900 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[6px] px-2 py-1 text-sm tabular-nums text-slate-900 dark:text-slate-100 focus:outline-none focus:border-accent"
+          />
+        </div>
+        <div>
+          <label
+            for="teamCost"
+            class="block text-sm text-slate-700 dark:text-slate-300 mb-1"
+            >Team cost (per month)</label
+          >
+          <input
+            id="teamCost"
+            type="number"
+            value="50000"
+            min="0"
+            step="100"
+            class="w-full bg-slate-50 dark:bg-slate-900 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[6px] px-2 py-1 text-sm tabular-nums text-slate-900 dark:text-slate-100 focus:outline-none focus:border-accent"
+          />
+        </div>
+        <div>
+          <label
+            for="consultationCost"
+            class="block text-sm text-slate-700 dark:text-slate-300 mb-1"
+            >Secondary care consultation cost</label
+          >
+          <input
+            id="consultationCost"
+            type="number"
+            value="130"
+            min="0"
+            step="1"
+            class="w-full bg-slate-50 dark:bg-slate-900 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[6px] px-2 py-1 text-sm tabular-nums text-slate-900 dark:text-slate-100 focus:outline-none focus:border-accent"
+          />
+        </div>
+        <div>
+          <label
+            for="admissionCost"
+            class="block text-sm text-slate-700 dark:text-slate-300 mb-1"
+            >Hospital admission cost</label
+          >
+          <input
+            id="admissionCost"
+            type="number"
+            value="5000"
+            min="0"
+            step="50"
+            class="w-full bg-slate-50 dark:bg-slate-900 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[6px] px-2 py-1 text-sm tabular-nums text-slate-900 dark:text-slate-100 focus:outline-none focus:border-accent"
+          />
+        </div>
+        <p
+          class="text-[10px] text-slate-500 dark:text-slate-500 pt-1 border-t-[0.5px] border-slate-100 dark:border-slate-700/50"
+        >
+          Lab tests and diagnostic procedures priced per the Brazilian SUS
+          SIGTAP schedule.
+        </p>
+      </div>
+    </article>
+
+    <!-- Col 2: Current scenario -->
+    <article>
+      <p
+        class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-1"
+      >
+        02 / CURRENT SCENARIO
+      </p>
+      <h2
+        class="text-base md:text-lg font-semibold tracking-[-0.02em] text-slate-900 dark:text-slate-100 mb-3"
+      >
+        Today
+      </h2>
+
+      <div class="space-y-3 md:space-y-4">
+        <div
+          class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[10px] p-4 md:p-5"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5"
+          >
+            Coverage
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <p class="flex items-baseline gap-1">
+              <span
+                id="patientsPerTeam"
+                class="text-base md:text-lg font-semibold tabular-nums text-slate-900 dark:text-slate-100"
+                >—</span
+              >
+              <span class="text-[10px] text-slate-500 dark:text-slate-500"
+                >pt/team</span
+              >
+            </p>
+            <p class="flex items-baseline gap-1">
+              <span
+                id="fpPercentage"
+                class="text-base md:text-lg font-semibold tabular-nums text-slate-900 dark:text-slate-100"
+                >—</span
+              >
+              <span class="text-[10px] text-slate-500 dark:text-slate-500"
+                >with FP</span
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[10px] p-4 md:p-5"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-2"
+          >
+            Total annual expenditure
+          </p>
+          <p
+            id="totalAnnualCosts"
+            class="text-xl md:text-2xl font-semibold tabular-nums text-accent"
+          >
+            —
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Diagnoses/year
+            </p>
+            <p
+              id="currentConditions"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-900 dark:text-slate-100"
+            >
+              —
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Lab tests/year
+            </p>
+            <p
+              id="currentLabTests"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-900 dark:text-slate-100"
+            >
+              —
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Referrals/year
+            </p>
+            <p
+              id="currentConsults"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-900 dark:text-slate-100"
+            >
+              —
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Admissions/year
+            </p>
+            <p
+              id="currentAdmissions"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-900 dark:text-slate-100"
+            >
+              —
+            </p>
+          </div>
+        </div>
+
+        <details
+          class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+        >
+          <summary
+            class="cursor-pointer text-xs text-accent hover:underline list-none select-none"
+          >
+            ▸ Monthly cost breakdown
+          </summary>
+          <div
+            class="mt-2 space-y-1 text-xs text-slate-700 dark:text-slate-300"
+          >
+            <p class="flex justify-between">
+              <span>Teams</span><span
+                id="monthlyTeamCosts"
+                class="tabular-nums">—</span
+              >
+            </p>
+            <p class="flex justify-between">
+              <span>Lab tests</span><span
+                id="monthlyLabCosts"
+                class="tabular-nums">—</span
+              >
+            </p>
+            <p class="flex justify-between">
+              <span>Secondary care</span><span
+                id="monthlyConsultationCosts"
+                class="tabular-nums">—</span
+              >
+            </p>
+            <p class="flex justify-between">
+              <span>Admissions</span><span
+                id="monthlyAdmissionCosts"
+                class="tabular-nums">—</span
+              >
+            </p>
+            <p
+              class="flex justify-between font-medium pt-1.5 border-t-[0.5px] border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100"
+            >
+              <span>Total monthly</span><span
+                id="totalMonthlyCosts"
+                class="tabular-nums">—</span
+              >
+            </p>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <!-- Col 3: Projection -->
+    <article>
+      <p
+        class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-1"
+      >
+        03 / PROJECTION
+      </p>
+      <h2
+        class="text-base md:text-lg font-semibold tracking-[-0.02em] text-slate-900 dark:text-slate-100 mb-3"
+      >
+        Simulated scenario
+      </h2>
+
+      <div class="space-y-3 md:space-y-4">
+        <div
+          class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[10px] p-4 md:p-5"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-2"
+          >
+            Projected annual cost
+          </p>
+          <p
+            id="newAnnualCosts"
+            class="text-xl md:text-2xl font-semibold tabular-nums text-slate-900 dark:text-slate-100"
+          >
+            —
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Savings with lab tests
+            </p>
+            <p
+              id="labSavings"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-500 dark:text-slate-500"
+              data-impact-savings
+            >
+              —
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Savings with referrals to secondary care
+            </p>
+            <p
+              id="consultationSavings"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-500 dark:text-slate-500"
+              data-impact-savings
+            >
+              —
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Savings with hospital admissions
+            </p>
+            <p
+              id="admissionSavings"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-500 dark:text-slate-500"
+              data-impact-savings
+            >
+              —
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-800 border-[0.5px] border-slate-200 dark:border-slate-700 rounded-[8px] p-3 md:p-4"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.14em] font-medium text-slate-500 dark:text-slate-500 mb-1.5 leading-tight"
+            >
+              Health conditions detected
+            </p>
+            <p
+              id="conditionsDetected"
+              class="text-sm md:text-base font-semibold tabular-nums text-slate-500 dark:text-slate-500"
+              data-impact-conditions
+            >
+              —
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white dark:bg-slate-800 border-[0.5px] border-accent rounded-[10px] p-4 md:p-5"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.14em] font-medium text-accent mb-2"
+          >
+            Net impact
+          </p>
+          <p
+            id="netSavings"
+            class="text-xl md:text-2xl font-semibold tabular-nums text-slate-500 dark:text-slate-500"
+            data-impact-savings
+          >
+            —
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</Base>
+
+<script>
+  import {
+    detectionData,
+    testsData,
+    referralsData,
+    hospitalData,
+  } from "../../data/impact-data";
+  import { calc } from "../../scripts/impact-calc";
+  import { SIGTAP_COSTS } from "../../data/sigtap-costs";
+
+  (function () {
+    const locale: "pt-BR" | "en-US" =
+      document.documentElement.lang === "en" ? "en-US" : "pt-BR";
+    const currency = "BRL";
+
+    function fmtCurrency(v: number): string {
+      return new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(v);
+    }
+    function fmtNumber(v: number): string {
+      return new Intl.NumberFormat(locale).format(Math.round(v));
+    }
+    function fmtPercent(v: number): string {
+      return v.toFixed(1).replace(".", locale === "pt-BR" ? "," : ".") + "%";
+    }
+    function fmtSavings(v: number): string {
+      const abs = Math.abs(v);
+      if (Math.round(abs) === 0) return fmtCurrency(0);
+      const arrow = v > 0 ? "↓ " : "↑ ";
+      return arrow + fmtCurrency(abs);
+    }
+    function fmtConditionsDelta(v: number): string {
+      const abs = Math.abs(v);
+      if (Math.round(abs) === 0) return "0";
+      const arrow = v > 0 ? "↑ " : "↓ ";
+      return arrow + fmtNumber(abs);
+    }
+
+    const FAVORABLE = ["text-emerald-700", "dark:text-emerald-400"];
+    const UNFAVORABLE = ["text-red-600", "dark:text-red-400"];
+    const NEUTRAL = ["text-slate-500", "dark:text-slate-500"];
+    const ALL_TONE = [...FAVORABLE, ...UNFAVORABLE, ...NEUTRAL];
+
+    function applyTone(
+      el: Element,
+      tone: "favorable" | "unfavorable" | "neutral"
+    ) {
+      el.classList.remove(...ALL_TONE);
+      if (tone === "favorable") el.classList.add(...FAVORABLE);
+      else if (tone === "unfavorable") el.classList.add(...UNFAVORABLE);
+      else el.classList.add(...NEUTRAL);
+    }
+
+    const $ = <T extends Element = HTMLElement>(id: string) =>
+      document.getElementById(id) as T | null;
+
+    const populationInput = $<HTMLInputElement>("populationSize")!;
+    const healthTeamsInput = $<HTMLInputElement>("healthTeams")!;
+    const familyPhysiciansInput = $<HTMLInputElement>("familyPhysicians")!;
+    const teamCostInput = $<HTMLInputElement>("teamCost")!;
+    const consultationCostInput = $<HTMLInputElement>("consultationCost")!;
+    const admissionCostInput = $<HTMLInputElement>("admissionCost")!;
+    const slider = $<HTMLInputElement>("fpSlider")!;
+    const sliderValueEl = $("sliderValue")!;
+    const sliderMaxEl = $("sliderMax")!;
+    const sliderResetBtn = $<HTMLButtonElement>("sliderReset")!;
+
+    const patientsPerTeamEl = $("patientsPerTeam")!;
+    const fpPercentageEl = $("fpPercentage")!;
+    const totalAnnualCostsEl = $("totalAnnualCosts")!;
+    const currentConditionsEl = $("currentConditions")!;
+    const currentLabTestsEl = $("currentLabTests")!;
+    const currentConsultsEl = $("currentConsults")!;
+    const currentAdmissionsEl = $("currentAdmissions")!;
+    const monthlyTeamCostsEl = $("monthlyTeamCosts")!;
+    const monthlyLabCostsEl = $("monthlyLabCosts")!;
+    const monthlyConsultationCostsEl = $("monthlyConsultationCosts")!;
+    const monthlyAdmissionCostsEl = $("monthlyAdmissionCosts")!;
+    const totalMonthlyCostsEl = $("totalMonthlyCosts")!;
+    const newAnnualCostsEl = $("newAnnualCosts")!;
+    const labSavingsEl = $("labSavings")!;
+    const consultationSavingsEl = $("consultationSavings")!;
+    const admissionSavingsEl = $("admissionSavings")!;
+    const conditionsDetectedEl = $("conditionsDetected")!;
+    const netSavingsEl = $("netSavings")!;
+
+    const allCategories = [
+      { key: "detection", items: detectionData.items },
+      { key: "tests", items: testsData.items },
+      { key: "referrals", items: referralsData.items },
+      { key: "hospital", items: hospitalData.items },
+    ];
+
+    function sumPerCategory(
+      proportion: number,
+      scaleFactor: number,
+      consultationCost: number,
+      admissionCost: number
+    ) {
+      let labTests = 0;
+      let labCost = 0;
+      let consultations = 0;
+      let referralsCost = 0;
+      let admissions = 0;
+      let conditions = 0;
+      for (const cat of allCategories) {
+        for (const it of cat.items) {
+          const [v] = calc(
+            it.baseline * scaleFactor,
+            it.rr,
+            proportion,
+            it.pop * scaleFactor
+          );
+          if (cat.key === "detection") {
+            conditions += v;
+          } else if (cat.key === "tests") {
+            labTests += v;
+            labCost += v * (SIGTAP_COSTS[it.name] ?? 0);
+          } else if (cat.key === "referrals") {
+            consultations += v;
+            // Diagnostic procedures (Echo, Spir, Colon, EGD, CPX) have their
+            // own SIGTAP unit price; specialties and surgeries fall back to
+            // the user-provided consultationCost.
+            const unitCost = SIGTAP_COSTS[it.name] ?? consultationCost;
+            referralsCost += v * unitCost;
+          } else if (cat.key === "hospital") {
+            admissions += v;
+          }
+        }
+      }
+      const admissionsCost = admissions * admissionCost;
+      return {
+        labTests,
+        labCost,
+        consultations,
+        referralsCost,
+        admissions,
+        admissionsCost,
+        conditions,
+      };
+    }
+
+    function clampInputs() {
+      const teams = Math.max(1, parseInt(healthTeamsInput.value) || 1);
+      let fps = Math.max(0, parseInt(familyPhysiciansInput.value) || 0);
+      if (fps > teams) {
+        fps = teams;
+        familyPhysiciansInput.value = String(teams);
+      }
+      familyPhysiciansInput.max = String(teams);
+      slider.max = String(teams);
+      if (parseInt(slider.value) > teams) slider.value = String(teams);
+      sliderMaxEl.textContent = String(teams);
+      return { teams, fps };
+    }
+
+    function recalc() {
+      const population = Math.max(
+        1000,
+        parseInt(populationInput.value) || 600000
+      );
+      const { teams, fps } = clampInputs();
+      const teamCost = Math.max(0, parseFloat(teamCostInput.value) || 0);
+      const consultationCost = Math.max(
+        0,
+        parseFloat(consultationCostInput.value) || 0
+      );
+      const admissionCost = Math.max(
+        0,
+        parseFloat(admissionCostInput.value) || 0
+      );
+
+      const scaleFactor = population / 600000;
+      const currentProportion = teams > 0 ? fps / teams : 0;
+      const newFps = Math.max(0, Math.min(teams, parseInt(slider.value) || 0));
+      const newProportion = teams > 0 ? newFps / teams : 0;
+
+      const cur = sumPerCategory(
+        currentProportion,
+        scaleFactor,
+        consultationCost,
+        admissionCost
+      );
+      const monthlyTeamCosts = teams * teamCost;
+      const monthlyLab = cur.labCost / 12;
+      const monthlyConsult = cur.referralsCost / 12;
+      const monthlyAdmission = cur.admissionsCost / 12;
+      const totalMonthly =
+        monthlyTeamCosts + monthlyLab + monthlyConsult + monthlyAdmission;
+      const totalAnnual = totalMonthly * 12;
+
+      const proj = sumPerCategory(
+        newProportion,
+        scaleFactor,
+        consultationCost,
+        admissionCost
+      );
+      const labSavings = cur.labCost - proj.labCost;
+      const consultSavings = cur.referralsCost - proj.referralsCost;
+      const admissionSavings = cur.admissionsCost - proj.admissionsCost;
+      const conditionsDelta = proj.conditions - cur.conditions;
+      const newAnnualCosts =
+        proj.labCost +
+        proj.referralsCost +
+        proj.admissionsCost +
+        teams * teamCost * 12;
+      const netSavings = labSavings + consultSavings + admissionSavings;
+
+      patientsPerTeamEl.textContent = fmtNumber(population / teams);
+      fpPercentageEl.textContent = fmtPercent(currentProportion * 100);
+      totalAnnualCostsEl.textContent = fmtCurrency(totalAnnual);
+      currentConditionsEl.textContent = fmtNumber(cur.conditions);
+      currentLabTestsEl.textContent = fmtNumber(cur.labTests);
+      currentConsultsEl.textContent = fmtNumber(cur.consultations);
+      currentAdmissionsEl.textContent = fmtNumber(cur.admissions);
+      monthlyTeamCostsEl.textContent = fmtCurrency(monthlyTeamCosts);
+      monthlyLabCostsEl.textContent = fmtCurrency(monthlyLab);
+      monthlyConsultationCostsEl.textContent = fmtCurrency(monthlyConsult);
+      monthlyAdmissionCostsEl.textContent = fmtCurrency(monthlyAdmission);
+      totalMonthlyCostsEl.textContent = fmtCurrency(totalMonthly);
+
+      sliderValueEl.textContent = String(newFps);
+      newAnnualCostsEl.textContent = fmtCurrency(newAnnualCosts);
+      labSavingsEl.textContent = fmtSavings(labSavings);
+      consultationSavingsEl.textContent = fmtSavings(consultSavings);
+      admissionSavingsEl.textContent = fmtSavings(admissionSavings);
+      conditionsDetectedEl.textContent = fmtConditionsDelta(conditionsDelta);
+      netSavingsEl.textContent = fmtSavings(netSavings);
+
+      const toneFor = (v: number) =>
+        Math.abs(v) < 0.5 ? "neutral" : v > 0 ? "favorable" : "unfavorable";
+      applyTone(labSavingsEl, toneFor(labSavings));
+      applyTone(consultationSavingsEl, toneFor(consultSavings));
+      applyTone(admissionSavingsEl, toneFor(admissionSavings));
+      applyTone(netSavingsEl, toneFor(netSavings));
+      applyTone(conditionsDetectedEl, toneFor(conditionsDelta));
+    }
+
+    [
+      populationInput,
+      healthTeamsInput,
+      familyPhysiciansInput,
+      teamCostInput,
+      consultationCostInput,
+      admissionCostInput,
+    ].forEach((el) => el.addEventListener("input", recalc));
+
+    slider.addEventListener("input", recalc);
+
+    sliderResetBtn.addEventListener("click", () => {
+      slider.value = familyPhysiciansInput.value;
+      recalc();
+    });
+
+    if (slider.value !== familyPhysiciansInput.value) {
+      slider.value = familyPhysiciansInput.value;
+    }
+
+    recalc();
+  })();
+</script>

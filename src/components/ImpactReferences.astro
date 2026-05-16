@@ -1,0 +1,103 @@
+---
+interface Props {
+  locale: "pt" | "en";
+}
+
+const { locale } = Astro.props;
+
+interface Reference {
+  label: string;
+  citation: string;
+  url: string;
+}
+
+const refsPT: Reference[] = [
+  {
+    label: "RBMFC 2020",
+    citation:
+      "Pesquisa científica, atenção primária e medicina de família: três ingredientes essenciais para melhorar a qualidade dos cuidados de saúde. Rev Bras Med Fam Comunidade. Rio de Janeiro, 2020 Jan-Dec; 15(42):24661.",
+    url: "https://rbmfc.org.br/rbmfc/article/view/2466/1565",
+  },
+  {
+    label: "BMC Family Practice 2021",
+    citation:
+      "Jantsch, A.G., Burström, B., Nilsson, G. et al. Detection and follow-up of chronic health conditions in Rio de Janeiro – the impact of residency training in family medicine. BMC Fam Pract 22, 223 (2021).",
+    url: "https://bmcprimcare.biomedcentral.com/articles/10.1186/s12875-021-01542-5",
+  },
+  {
+    label: "BMJ Open 2022",
+    citation:
+      "Jantsch AG, Burström B, Nilsson GH, et al. Residency training in family medicine and its impact on coordination and continuity of care: an analysis of referrals to secondary care in Rio de Janeiro. BMJ Open 2022;12:e051515.",
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8852675/pdf/bmjopen-2021-051515.pdf",
+  },
+  {
+    label: "PLOS Global Public Health 2023",
+    citation:
+      "Jantsch AG, Burström B, Nilsson GH, Ponce de Leon A (2023) The impact of residency training in family medicine on hospital admissions due to Ambulatory-care Sensitive Conditions in Rio de Janeiro. PLOS Glob Public Health 3(10): e0000547.",
+    url: "https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0000547",
+  },
+  {
+    label: "Tese (UERJ)",
+    citation:
+      "The impact of residency training in family medicine in promoting the attributes of primary care in Rio de Janeiro / O impacto da residência em medicina de família na promoção dos atributos da atenção primária no Rio de Janeiro.",
+    url: "https://www.bdtd.uerj.br:8443/handle/1/20692",
+  },
+];
+
+const refsEN: Reference[] = [
+  {
+    label: "RBMFC 2020",
+    citation:
+      "Pesquisa científica, atenção primária e medicina de família: três ingredientes essenciais para melhorar a qualidade dos cuidados de saúde. Rev Bras Med Fam Comunidade. Rio de Janeiro, 2020 Jan-Dec; 15(42):24661.",
+    url: "https://rbmfc.org.br/rbmfc/article/view/2466/1565",
+  },
+  {
+    label: "BMC Family Practice 2021",
+    citation:
+      "Jantsch, A.G., Burström, B., Nilsson, G. et al. Detection and follow-up of chronic health conditions in Rio de Janeiro – the impact of residency training in family medicine. BMC Fam Pract 22, 223 (2021).",
+    url: "https://bmcprimcare.biomedcentral.com/articles/10.1186/s12875-021-01542-5",
+  },
+  {
+    label: "BMJ Open 2022",
+    citation:
+      "Jantsch AG, Burström B, Nilsson GH, et al. Residency training in family medicine and its impact on coordination and continuity of care: an analysis of referrals to secondary care in Rio de Janeiro. BMJ Open 2022;12:e051515.",
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8852675/pdf/bmjopen-2021-051515.pdf",
+  },
+  {
+    label: "PLOS Global Public Health 2023",
+    citation:
+      "Jantsch AG, Burström B, Nilsson GH, Ponce de Leon A (2023) The impact of residency training in family medicine on hospital admissions due to Ambulatory-care Sensitive Conditions in Rio de Janeiro. PLOS Glob Public Health 3(10): e0000547.",
+    url: "https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0000547",
+  },
+  {
+    label: "Full thesis (UERJ)",
+    citation:
+      "The impact of residency training in family medicine in promoting the attributes of primary care in Rio de Janeiro / O impacto da residência em medicina de família na promoção dos atributos da atenção primária no Rio de Janeiro.",
+    url: "https://www.bdtd.uerj.br:8443/handle/1/20692",
+  },
+];
+
+const refs = locale === "pt" ? refsPT : refsEN;
+---
+
+<ol
+  class="space-y-4 text-sm text-slate-600 dark:text-slate-400 list-decimal pl-5"
+>
+  {
+    refs.map((r) => (
+      <li>
+        <a
+          href={r.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-accent transition-colors"
+        >
+          <strong class="text-slate-900 dark:text-slate-100 font-medium">
+            {r.label}
+          </strong>{" "}
+          — {r.citation}
+        </a>
+      </li>
+    ))
+  }
+</ol>

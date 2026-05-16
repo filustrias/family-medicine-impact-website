@@ -1,0 +1,471 @@
+---
+import Base from "../layouts/Base.astro";
+import ImpactBar from "../components/ImpactBar.astro";
+import ImpactMatrix from "../components/ImpactMatrix.astro";
+import ImpactSection from "../components/ImpactSection.astro";
+import FollowupTables from "../components/FollowupTables.astro";
+import ImpactReferences from "../components/ImpactReferences.astro";
+import {
+  detectionData,
+  testsData,
+  referralsData,
+  hospitalData,
+} from "../data/impact-data";
+
+const columnLabels = {
+  name: "Evento",
+  rr: "RR (IC 95%)",
+  observed: "Observado",
+  delta: "Δ",
+  newValue: "Novo",
+};
+const locale = "pt-BR" as const;
+const collapseLabel = "Mostrar menos";
+---
+
+<Base
+  lang="pt"
+  title="Impacto · family-medicine-impact"
+  description="O que dois anos de treinamento em Medicina de Família fazem na prática médica na APS. Evidências de duas coortes no Rio de Janeiro."
+>
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pt-12 pb-8 md:pt-16 md:pb-10"
+  >
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-accent mb-3">
+      IMPACTO
+    </p>
+    <h1
+      class="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.035em] text-slate-900 dark:text-slate-100 mb-4"
+    >
+      O que dois anos de treinamento em Medicina de Família fazem na prática
+      médica na Atenção Primária à Saúde.
+    </h1>
+    <p class="text-base md:text-lg font-medium text-accent">
+      Evidências de 600 mil pacientes acompanhados por 6 anos na Atenção
+      Primária do Rio de Janeiro por médicos de família e por médicos
+      generalistas (médicos sem treinamento em medicina de família) no Rio de
+      Janeiro.
+    </p>
+  </section>
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mb-10 md:mb-14 space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+  >
+    <p>
+      Os dados aqui apresentados vêm de uma coorte de 600.000 pacientes
+      acompanhados na atenção primária do Rio de Janeiro entre 2013 e 2018.
+      Pacientes foram atendidos por dois grupos de médicos distintos: médicos
+      de família com 2 anos de formação em residência médica nesta
+      especialidade (200.000 pacientes) versus médicos sem esta formação
+      (400.000 pacientes). Condições de trabalho e perfil demográfico das
+      populações atendidas eram os mesmos, sendo a única diferença a formação
+      dos médicos.
+    </p>
+    <p>
+      Os números abaixo refletem o que aconteceu nessa coorte. Use a barra
+      abaixo para projetar o que aconteceria com a detecção de doenças, com o
+      pedido de exames, com os encaminhamentos para a atenção secundária e
+      com as internações hospitalares se a proporção de médicos de família
+      fosse maior — ou menor.
+    </p>
+  </section>
+
+  <ImpactBar
+    labels={{
+      generalists: "Generalistas",
+      familyPhysicians: "Médicos de família",
+      instruction: "Mova para simular cenários",
+      reset: "Resetar",
+    }}
+  />
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-8 md:mt-10 mb-12 md:mb-16"
+  >
+    <ImpactMatrix
+      labels={{
+        detection: {
+          number: "01",
+          title: "DETECÇÃO",
+          caption: "condições crônicas / ano",
+        },
+        tests: {
+          number: "02",
+          title: "EXAMES",
+          caption: "exames laboratoriais / ano",
+        },
+        referrals: {
+          number: "03",
+          title: "ENCAMINHAMENTOS",
+          caption: "encaminhamentos / ano (líquido)",
+        },
+        hospital: {
+          number: "04",
+          title: "INTERNAÇÕES",
+          caption: "internações hospitalares / ano",
+        },
+      }}
+    />
+  </section>
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mb-12 md:mb-16"
+  >
+    <nav
+      class="border-t-[0.5px] border-b-[0.5px] border-slate-200 dark:border-slate-700 py-4"
+    >
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span
+          class="text-[11px] uppercase tracking-[0.14em] font-medium text-accent mr-2"
+          >NESTA PÁGINA</span
+        >
+        <a
+          href="#detection"
+          class="text-sm text-slate-600 dark:text-slate-400 hover:text-accent transition-colors"
+          >Detecção</a
+        >
+        <a
+          href="#tests"
+          class="text-sm text-slate-600 dark:text-slate-400 hover:text-accent transition-colors"
+          >Exames</a
+        >
+        <a
+          href="#referrals"
+          class="text-sm text-slate-600 dark:text-slate-400 hover:text-accent transition-colors"
+          >Encaminhamentos</a
+        >
+        <a
+          href="#hospital"
+          class="text-sm text-slate-600 dark:text-slate-400 hover:text-accent transition-colors"
+          >Internações</a
+        >
+        <a
+          href="#followup"
+          class="text-sm text-slate-600 dark:text-slate-400 hover:text-accent transition-colors"
+          >Continuidade</a
+        >
+      </div>
+    </nav>
+  </section>
+
+  <div
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-12 md:pb-16 space-y-16 md:space-y-20"
+  >
+    <ImpactSection
+      anchorId="detection"
+      eyebrow="DETECÇÃO DE CONDIÇÕES CRÔNICAS"
+      title="Médicos de família detectam mais"
+      meta="28 condições · BMC Family Practice (2021)"
+      category="detection"
+      items={detectionData.items}
+      visibleCount={7}
+      expandLabel="Ver todas as 28 condições"
+      collapseLabel={collapseLabel}
+      paperUrl="https://bmcprimcare.biomedcentral.com/articles/10.1186/s12875-021-01542-5"
+      paperLinkLabel="Paper completo"
+      columnLabels={columnLabels}
+      locale={locale}
+    >
+      <Fragment slot="context">
+        <p>
+          Médicos de família foram mais capazes de detectar a maior parte das
+          28 condições crônicas analisadas. O efeito é particularmente forte
+          para condições que exigem suspeita ativa: drogadição, abuso de
+          álcool, doença arterial periférica, insuficiência renal.
+        </p>
+      </Fragment>
+      <Fragment slot="interpretation">
+        <p>
+          Detectar doenças no momento oportuno significa poder iniciar o
+          manejo em fases mais iniciais da doença, possibilitando modificar a
+          história da doença, prevenir desfechos indesejáveis e evitar que
+          complicações e sequelas sejam estabelecidas.
+        </p>
+      </Fragment>
+    </ImpactSection>
+
+    <ImpactSection
+      anchorId="tests"
+      eyebrow="EXAMES LABORATORIAIS"
+      title="… e solicitam menos exames"
+      meta="30 exames · BMC Family Practice (2021)"
+      category="tests"
+      items={testsData.items}
+      visibleCount={5}
+      expandLabel="Ver todos os 30 exames"
+      collapseLabel={collapseLabel}
+      paperUrl="https://bmcprimcare.biomedcentral.com/articles/10.1186/s12875-021-01542-5"
+      paperLinkLabel="Paper completo"
+      columnLabels={columnLabels}
+      locale={locale}
+    >
+      <Fragment slot="context">
+        <p>
+          Médicos de família solicitam menos exames laboratoriais e de
+          imagem, fazendo uso mais racional destes recursos. Estas reduções
+          são particularmente significativas em exames solicitados
+          rotineiramente como hemograma, ureia, ácido úrico, LDL colesterol,
+          urinálise.
+        </p>
+      </Fragment>
+      <Fragment slot="interpretation">
+        <p>
+          Solicitar menos exames não significa ofertar menos cuidado, mas sim
+          fazer uso mais judicioso destes recursos. Com melhor julgamento
+          clínico, médicos de família detectam mais doenças ao mesmo tempo
+          que solicitam menos exames.
+        </p>
+      </Fragment>
+    </ImpactSection>
+
+    <ImpactSection
+      anchorId="referrals"
+      eyebrow="ENCAMINHAMENTOS AO NÍVEL SECUNDÁRIO"
+      title="Encaminham com critério"
+      meta="31 especialidades · BMJ Open (2022)"
+      category="referrals"
+      items={referralsData.items}
+      visibleCount={6}
+      expandLabel="Ver todas as 31 especialidades"
+      collapseLabel={collapseLabel}
+      paperUrl="https://pmc.ncbi.nlm.nih.gov/articles/PMC8852675/pdf/bmjopen-2021-051515.pdf"
+      paperLinkLabel="Paper completo"
+      columnLabels={columnLabels}
+      locale={locale}
+    >
+      <Fragment slot="context">
+        <p>
+          O cenário aqui é mais matizado que nas seções anteriores: médicos de
+          família não simplesmente encaminham menos.
+        </p>
+      </Fragment>
+      <Fragment slot="nuance">
+        <p>
+          Médicos de família não simplesmente encaminham menos, mas o fazem
+          mais criteriosamente. Para condições que demandam recursos
+          especializados — reabilitação, fisioterapia, cirurgia oftalmológica
+          — encaminham os pacientes mais prontamente, ampliando o acesso para
+          quem realmente precisa. Para condições clínicas que podem ser
+          manejadas na APS — dermatologia, ortopedia ambulatorial,
+          cardiologia, pneumologia, endocrinologia — encaminham muito menos,
+          retendo o cuidado no primeiro nível. O efeito final é o aumento da
+          capacidade de resposta do sistema de saúde.
+        </p>
+      </Fragment>
+      <Fragment slot="interpretation">
+        <p>
+          A redução de encaminhamentos não congestiona a atenção primária,
+          mas desafoga a atenção secundária, fazendo com que o cuidado do
+          paciente aconteça onde realmente deve estar.
+        </p>
+      </Fragment>
+    </ImpactSection>
+
+    <ImpactSection
+      anchorId="hospital"
+      eyebrow="INTERNAÇÕES HOSPITALARES"
+      title="Reduzem internações"
+      meta="14 condições sensíveis à APS · PLOS Glob Public Health (2023)"
+      category="hospital"
+      items={hospitalData.items}
+      visibleCount={4}
+      expandLabel="Ver todas as 14 condições"
+      collapseLabel={collapseLabel}
+      paperUrl="https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0000547"
+      paperLinkLabel="Paper completo"
+      columnLabels={columnLabels}
+      locale={locale}
+    >
+      <Fragment slot="context">
+        <p>
+          Pacientes acompanhados por médicos de família tiveram menor risco
+          de hospitalização para condições sensíveis à atenção primária
+          analisadas (lista brasileira ICSAP). O efeito foi observado tanto
+          para condições agudas (pneumonias, infecções de pele, condições
+          relacionadas à gravidez, parto e puerpério) quanto para condições
+          crônicas que, caso sejam bem manejadas, podem reduzir o risco de
+          agudização e de necessidade de internação hospitalar — asma,
+          insuficiência cardíaca e angina pectoris são alguns exemplos.
+        </p>
+      </Fragment>
+      <Fragment slot="interpretation">
+        <p>
+          Cada internação evitada representa não apenas economia para o
+          sistema, mas redução de sofrimento e melhor qualidade de vida. Um
+          paciente com asma que está bem controlado será um paciente a menos
+          no pronto-socorro.
+        </p>
+      </Fragment>
+    </ImpactSection>
+
+    <section id="followup" class="scroll-mt-32">
+      <div
+        class="text-[11px] uppercase tracking-[0.14em] font-medium text-accent mb-2"
+      >
+        CONTINUIDADE DO CUIDADO
+      </div>
+      <h2
+        class="text-2xl md:text-3xl font-semibold tracking-[-0.025em] text-slate-900 dark:text-slate-100 mb-1.5"
+      >
+        Diagnosticar é só uma etapa
+      </h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">
+        3 análises distintas
+      </p>
+      <p
+        class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-10"
+      >
+        Diagnosticar, pedir exames ou fazer um encaminhamento são apenas uma
+        etapa do cuidado. Continuá-lo ao longo do tempo com o mesmo
+        profissional é um desafio e uma atribuição da Atenção Primária à
+        Saúde. Ao realizar um novo diagnóstico, encaminhar um paciente ao
+        nível secundário e ao internar um paciente, médicos de família
+        realizam mais consultas de seguimento em cada uma destas três
+        situações. Isso mostra como o treinamento nesta especialidade prepara
+        médicos para realizar a continuidade do cuidado de seus pacientes.
+      </p>
+      <FollowupTables locale="pt" />
+    </section>
+
+    <section>
+      <div
+        class="text-[11px] uppercase tracking-[0.14em] font-medium text-accent mb-2"
+      >
+        METODOLOGIA E LIMITAÇÕES
+      </div>
+      <div
+        class="space-y-4 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mt-4"
+      >
+        <p>
+          Os Risk Ratios apresentados foram calculados por modelos binomiais
+          multilevel ajustados por idade, sexo, índice de comorbidade de
+          Charlson, índice de desenvolvimento social do bairro e tempo. Cada
+          consulta foi tratada como evento binário aninhado dentro do
+          paciente, dentro do médico ou da equipe de saúde da família,
+          conforme o desfecho analisado.
+        </p>
+        <p>
+          Os números absolutos projetados pela barra acima usam a fórmula da
+          <a
+            href="https://www.who.int/teams/environment-climate-change-and-health/air-quality-and-health/videos/mosaic/burden-of-disease/population-attributable-fraction"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent hover:underline"
+            >Fração Atribuível Populacional (PAF) da Organização Mundial da
+            Saúde</a
+          >, aplicada ao baseline observado de cada evento.
+        </p>
+        <p>
+          Limitações: os dados refletem o contexto específico do Rio de
+          Janeiro entre 2013–2018, com a estrutura particular do sistema
+          público municipal de APS. A generalização imediata para outros
+          contextos requer cautela. Variações locais em estrutura, recursos e
+          formação médica afetam a transferibilidade dos achados.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div
+        class="text-[11px] uppercase tracking-[0.14em] font-medium text-accent mb-4"
+      >
+        REFERÊNCIAS
+      </div>
+      <ImpactReferences locale="pt" />
+    </section>
+
+    <section
+      class="border-t-[0.5px] border-slate-200 dark:border-slate-700 pt-8"
+    >
+      <p
+        class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4"
+      >
+        Veja como essa proporção se traduz em economia para o sistema de
+        saúde.
+      </p>
+      <a
+        href="/simulador"
+        class="inline-flex items-center gap-2 bg-accent text-white dark:text-slate-900 text-sm font-medium py-2.5 px-5 rounded-md hover:opacity-90 transition-opacity"
+      >
+        Ir para o simulador →
+      </a>
+    </section>
+  </div>
+</Base>
+
+<script>
+  import {
+    calc,
+    formatNumber,
+    formatDelta,
+    getChangeClass,
+    type ImpactCategoryKey,
+  } from "../scripts/impact-calc";
+
+  const locale: "pt-BR" | "en-US" =
+    document.documentElement.lang === "en" ? "en-US" : "pt-BR";
+
+  const FAVORABLE = ["text-accent"];
+  const UNFAVORABLE = ["text-amber-600", "dark:text-amber-400"];
+  const NEUTRAL = ["text-slate-500", "dark:text-slate-500"];
+  const ALL_TONE = [...FAVORABLE, ...UNFAVORABLE, ...NEUTRAL];
+
+  function applyTone(el: Element, klass: "favorable" | "unfavorable" | "neutral") {
+    el.classList.remove(...ALL_TONE);
+    if (klass === "favorable") el.classList.add(...FAVORABLE);
+    else if (klass === "unfavorable") el.classList.add(...UNFAVORABLE);
+    else el.classList.add(...NEUTRAL);
+  }
+
+  function recalculateAll(pMF: number) {
+    const aggregates: Record<ImpactCategoryKey, number> = {
+      detection: 0,
+      tests: 0,
+      referrals: 0,
+      hospital: 0,
+    };
+
+    document.querySelectorAll<HTMLTableRowElement>("tr[data-rr]").forEach(
+      (row) => {
+        const rr = parseFloat(row.getAttribute("data-rr") ?? "NaN");
+        const pop = parseFloat(row.getAttribute("data-pop") ?? "NaN");
+        const base = parseFloat(row.getAttribute("data-base") ?? "NaN");
+        const category = row.getAttribute("data-category") as ImpactCategoryKey;
+        if (!isFinite(rr) || !isFinite(pop) || !isFinite(base) || !category)
+          return;
+
+        const [newValue, delta] = calc(base, rr, pMF, pop);
+
+        const deltaCell = row.querySelector<HTMLElement>("[data-delta-display]");
+        const newValueCell = row.querySelector<HTMLElement>(
+          "[data-new-value-display]"
+        );
+        if (deltaCell) {
+          deltaCell.textContent = formatDelta(delta, locale);
+          applyTone(deltaCell, getChangeClass(category, delta));
+        }
+        if (newValueCell) {
+          newValueCell.textContent = formatNumber(newValue, locale);
+        }
+
+        aggregates[category] += delta;
+      }
+    );
+
+    (Object.keys(aggregates) as ImpactCategoryKey[]).forEach((cat) => {
+      const el = document.querySelector<HTMLElement>(
+        `[data-impact-value="${cat}"]`
+      );
+      if (!el) return;
+      const totalDelta = aggregates[cat];
+      el.textContent = formatDelta(totalDelta, locale);
+      applyTone(el, getChangeClass(cat, totalDelta));
+    });
+  }
+
+  document.addEventListener("impact:proportion-change", ((e: CustomEvent) => {
+    recalculateAll(e.detail.pMF);
+  }) as EventListener);
+
+  recalculateAll(0.336);
+</script>
