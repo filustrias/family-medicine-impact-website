@@ -2,7 +2,6 @@
 import Base from "../../layouts/Base.astro";
 import Hero from "../../components/Hero.astro";
 import EvidenceCarousel from "../../components/EvidenceCarousel.astro";
-import NextStepCards from "../../components/NextStepCards.astro";
 
 const evidenceSlides = [
   "Primary care must be the foundation of resilient, high-quality, and efficient health systems.",
@@ -13,30 +12,6 @@ const evidenceSlides = [
   "Family doctors refer far fewer patients to specialists at the secondary level.",
   "Patients followed by family doctors have substantially lower hospitalization risk across a range of conditions.",
   "Family doctors provide far more consistent follow-up than physicians without this training.",
-];
-
-const nextStepCards = [
-  {
-    icon: "lucide:trending-up",
-    href: "/impact",
-    title: "Impact",
-    description:
-      "Two cohorts, 15 years of evidence on the expansion of primary care in Rio de Janeiro.",
-  },
-  {
-    icon: "lucide:sliders-horizontal",
-    href: "/simulate",
-    title: "Simulator",
-    description:
-      "Run your own municipality through the model — see costs and outcomes shift in real time.",
-  },
-  {
-    icon: "lucide:globe",
-    href: "/projects",
-    title: "Projects",
-    description:
-      "Active research and consulting in four countries: Brazil, Canada, Angola, and Mozambique.",
-  },
 ];
 ---
 
@@ -50,8 +25,8 @@ const nextStepCards = [
     headlineLine1="Strengthening primary health care and family medicine"
     headlineLine2="in the community, where it happens."
     subline="Working at the intersection of medical education, implementation research, health-system strengthening, and the smart use of data."
-    ctaPrimary={{ label: "Explore the impact", href: "/impact" }}
-    ctaSecondary={{ label: "About me", href: "/about" }}
+    ctaPrimary={{ label: "Explore the impact", href: "/en/impact" }}
+    ctaSecondary={{ label: "About me", href: "/en/about" }}
   />
   <EvidenceCarousel
     sectionLabel="EVIDENCE · PRIMARY CARE AND FAMILY MEDICINE"
@@ -60,5 +35,59 @@ const nextStepCards = [
     previousLabel="Previous"
     nextLabel="Next"
   />
-  <NextStepCards sectionLabel="CONTINUE EXPLORING" cards={nextStepCards} />
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-12 md:mt-16 pb-12 md:pb-16"
+  >
+    <div
+      class="space-y-5 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+    >
+      <p>
+        The transition from vertical and selective health systems to a
+        comprehensive, effective, and person-centered Primary Health Care
+        (PHC) approach remains a critical challenge, especially in low- and
+        middle-income countries. Faced with questions regarding the actual
+        need for specialized training for medical practice at this level of
+        care, this website presents empirical evidence based on cohort
+        studies conducted in Rio de Janeiro. The research directly compares
+        the performance of general practitioners with that of Family
+        Physicians who completed a two-year residency in this specialty,
+        analyzing the impact of this specific training on clinical outcomes
+        and health system efficiency.
+      </p>
+      <p>
+        The results demonstrate that Family Physicians manage a higher
+        volume of chronic conditions per patient and, simultaneously, order
+        fewer laboratory and imaging tests compared to general
+        practitioners. This specialized training generates measurable
+        impacts on increasing pathology detection, optimizing referrals to
+        secondary care, reducing hospital admissions, and ensuring
+        continuity of care over time. These data are presented here and
+        allow you to visualize them dynamically, understand the magnitude
+        of the impact that family physicians can make in qualifying patient
+        care, and, finally, run population scenario simulations to predict
+        the behavior of health expenditures and indicators if general
+        practitioners are trained or replaced by specialists.
+      </p>
+      <p>
+        Designed to subsidize structured dialogue, the platform offers
+        robust data demonstrating the strategic value of Family Medicine in
+        coordinating health systems. This website was created as a tool to
+        facilitate dialogue with stakeholders and decision-makers, and to
+        support healthcare professionals and researchers in advocating for
+        investments in Primary Health Care at local and international
+        levels.
+      </p>
+      <p>
+        In addition to sharing information produced in this doctoral
+        thesis, I also present the work and projects that I am currently
+        conducting in Brazil and other countries.
+      </p>
+    </div>
+    <p
+      class="mt-8 text-base md:text-lg font-medium text-accent"
+    >
+      — Adelson Guaraci Jantsch
+    </p>
+  </section>
 </Base>

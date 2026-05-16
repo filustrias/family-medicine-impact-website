@@ -2,7 +2,6 @@
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
 import EvidenceCarousel from "../components/EvidenceCarousel.astro";
-import NextStepCards from "../components/NextStepCards.astro";
 
 const evidenceSlides = [
   "Atenção Primária à Saúde deve ser a fundação de sistemas de saúde resilientes, de qualidade e eficientes.",
@@ -13,30 +12,6 @@ const evidenceSlides = [
   "Médicos de família encaminham muito menos seus pacientes para consultas com especialistas no nível secundário.",
   "Pacientes acompanhados por médicos de família têm risco muito menor de internação por diversas condições.",
   "Médicos de família acompanham seus pacientes de forma muito mais consistente do que médicos sem este treinamento.",
-];
-
-const nextStepCards = [
-  {
-    icon: "lucide:trending-up",
-    href: "/impacto",
-    title: "Impacto",
-    description:
-      "Duas coortes, 15 anos de evidência sobre a expansão da atenção primária no Rio de Janeiro.",
-  },
-  {
-    icon: "lucide:sliders-horizontal",
-    href: "/simulador",
-    title: "Simulador",
-    description:
-      "Coloque seu próprio município no modelo — veja custos e desfechos mudarem em tempo real.",
-  },
-  {
-    icon: "lucide:globe",
-    href: "/projetos",
-    title: "Projetos",
-    description:
-      "Pesquisa e consultoria ativas em quatro países: Brasil, Canadá, Angola e Moçambique.",
-  },
 ];
 ---
 
@@ -50,8 +25,8 @@ const nextStepCards = [
     headlineLine1="Fortalecer a atenção primária e a medicina de família"
     headlineLine2="na comunidade, onde ela acontece."
     subline="Atuando na intersecção entre educação médica, pesquisa de implementação, fortalecimento de sistemas de saúde e uso inteligente de dados."
-    ctaPrimary={{ label: "Explore o impacto", href: "/impact" }}
-    ctaSecondary={{ label: "Sobre mim", href: "/about" }}
+    ctaPrimary={{ label: "Explore o impacto", href: "/impacto" }}
+    ctaSecondary={{ label: "Sobre mim", href: "/sobre" }}
   />
   <EvidenceCarousel
     sectionLabel="EVIDÊNCIAS · ATENÇÃO PRIMÁRIA E MEDICINA DE FAMÍLIA"
@@ -60,5 +35,61 @@ const nextStepCards = [
     previousLabel="Anterior"
     nextLabel="Próximo"
   />
-  <NextStepCards sectionLabel="PRÓXIMOS PASSOS" cards={nextStepCards} />
+
+  <section
+    class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 mt-12 md:mt-16 pb-12 md:pb-16"
+  >
+    <div
+      class="space-y-5 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300"
+    >
+      <p>
+        A transição de sistemas de saúde verticais e seletivos para uma
+        Atenção Primária à Saúde (APS) abrangente, resolutiva e centrada na
+        pessoa permanece um desafio crítico, especialmente em países de baixa
+        e média renda. Diante do questionamento sobre a real necessidade de
+        treinamento especializado para a atuação médica nesse nível de
+        assistência, este website apresenta evidências empíricas baseadas em
+        estudos de coorte realizados no Rio de Janeiro. A pesquisa compara
+        diretamente o desempenho de médicos generalistas com o de Médicos de
+        Família que concluíram dois anos de residência nesta especialidade,
+        analisando o impacto dessa formação específica nos desfechos clínicos
+        e na eficiência do sistema de saúde.
+      </p>
+      <p>
+        Os resultados demonstram que os Médicos de Família acompanham um
+        volume maior de condições crônicas por paciente e, simultaneamente,
+        solicitam menos exames laboratoriais e de imagem em comparação aos
+        generalistas. Esse treinamento especializado gera impactos
+        mensuráveis na ampliação da detecção de patologias, na otimização
+        dos encaminhamentos para o nível secundário, na redução de
+        internações hospitalares e na garantia da continuidade do cuidado ao
+        longo do tempo. Esses dados estão aqui apresentados e permitem que
+        você os visualize de forma dinâmica, perceba o tamanho do impacto
+        que médicos de família podem fazer na qualificação do cuidado de
+        pacientes e, por fim, realizar simulações de cenários populacionais
+        para prever o comportamento dos gastos e dos indicadores de saúde
+        caso médicos generalistas sejam capacitados ou substituídos por
+        especialistas.
+      </p>
+      <p>
+        Idealizada para subsidiar o diálogo estruturado, a plataforma oferece
+        dados robustos que demonstram o valor estratégico da Medicina de
+        Família na ordenação dos sistemas de saúde. Este website foi criado
+        como ferramenta para facilitar o diálogo com stakeholders e
+        tomadores de decisão e apoiar profissionais de saúde e pesquisadores
+        na advocacia por investimentos na Atenção Primária à Saúde em nível
+        local e internacional.
+      </p>
+      <p>
+        Além de compartilhar informações produzidas nesta tese de doutorado,
+        apresento também os trabalhos e projetos que venho conduzindo no
+        Brasil e em outros países atualmente.
+      </p>
+    </div>
+    <p
+      class="mt-8 text-base md:text-lg font-medium text-accent"
+    >
+      — Adelson Guaraci Jantsch
+    </p>
+  </section>
 </Base>
