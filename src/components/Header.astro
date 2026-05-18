@@ -18,6 +18,7 @@ const dict = {
     },
     other: { code: "EN", aria: "Switch to English" },
     themeAria: "Alternar tema claro/escuro",
+    menuAria: "Abrir menu",
   },
   en: {
     nav: {
@@ -29,6 +30,7 @@ const dict = {
     },
     other: { code: "PT", aria: "Mudar para português" },
     themeAria: "Toggle light/dark theme",
+    menuAria: "Open menu",
   },
 };
 
@@ -99,20 +101,91 @@ const otherHref =
         <Icon name="lucide:sun" class="w-5 h-5 hidden dark:inline-block" aria-hidden="true" />
         <Icon name="lucide:moon" class="w-5 h-5 inline-block dark:hidden" aria-hidden="true" />
       </button>
+      <button
+        id="mobile-nav-toggle"
+        type="button"
+        aria-label={t.menuAria}
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+        class="md:hidden text-slate-600 dark:text-slate-400 hover:text-accent transition-colors flex items-center"
+      >
+        <Icon name="lucide:menu" class="w-5 h-5" aria-hidden="true" data-menu-open />
+        <Icon name="lucide:x" class="w-5 h-5 hidden" aria-hidden="true" data-menu-close />
+      </button>
     </div>
   </div>
+
+  <nav
+    id="mobile-nav"
+    aria-label="Primary mobile"
+    class="md:hidden hidden border-t-[0.5px] border-slate-200 dark:border-slate-700"
+  >
+    <div
+      class="max-w-4xl mx-auto px-4 py-3 flex flex-col text-sm text-slate-600 dark:text-slate-400"
+    >
+      <a
+        href={t.nav.home.href}
+        class="py-2 hover:text-accent transition-colors"
+        >{t.nav.home.label}</a
+      >
+      <a
+        href={t.nav.impact.href}
+        class="py-2 hover:text-accent transition-colors"
+        >{t.nav.impact.label}</a
+      >
+      <a
+        href={t.nav.simulate.href}
+        class="py-2 hover:text-accent transition-colors"
+        >{t.nav.simulate.label}</a
+      >
+      <a
+        href={t.nav.projects.href}
+        class="py-2 hover:text-accent transition-colors"
+        >{t.nav.projects.label}</a
+      >
+      <a
+        href={t.nav.about.href}
+        class="py-2 hover:text-accent transition-colors"
+        >{t.nav.about.label}</a
+      >
+    </div>
+  </nav>
 </header>
 
 <script>
-  const btn = document.getElementById("atlas-theme-toggle");
-  if (btn) {
-    btn.addEventListener("click", () => {
+  const themeBtn = document.getElementById("atlas-theme-toggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
       const isDark = document.documentElement.classList.toggle("dark");
       try {
         localStorage.setItem("atlas-theme", isDark ? "dark" : "light");
       } catch (_) {
         /* localStorage unavailable */
       }
+    });
+  }
+
+  const mobileBtn = document.getElementById("mobile-nav-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+  if (mobileBtn && mobileNav) {
+    const iconOpen = mobileBtn.querySelector<HTMLElement>("[data-menu-open]");
+    const iconClose = mobileBtn.querySelector<HTMLElement>("[data-menu-close]");
+
+    function setOpen(open: boolean) {
+      mobileNav!.classList.toggle("hidden", !open);
+      mobileBtn!.setAttribute("aria-expanded", String(open));
+      iconOpen?.classList.toggle("hidden", open);
+      iconClose?.classList.toggle("hidden", !open);
+    }
+
+    mobileBtn.addEventListener("click", () => {
+      const isHidden = mobileNav.classList.contains("hidden");
+      setOpen(isHidden);
+    });
+
+    // Close menu when any link inside is clicked
+    mobileNav.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => setOpen(false));
     });
   }
 </script>
